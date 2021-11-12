@@ -1,0 +1,33 @@
+<ion-content>
+  <div id="content">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-11 col-md-7">
+          <form [formGroup]="loginForm" class="meka-form">
+            <ion-item class="mb-2">
+              <ion-label mode="ios" position="floating">E-Mail</ion-label>
+              <ion-input formControlName="email" type="email"></ion-input>
+            </ion-item>
+            <ion-item class="mb-3">
+              <ion-label mode="ios" position="floating">Password</ion-label>
+              <ion-input formControlName="password" type="password"></ion-input>
+            </ion-item>
+          </form>
+          <div class="buttons">
+            <ion-button mode="ios" (click)="onSubmit()" expand="block" color="warning" shape="round">
+              access
+            </ion-button>
+            <ion-button mode="ios" (click)="onForgot()" color="light" expand="block" fill="clear" shape="round">
+              forgot password
+            </ion-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+<ion-footer class="ion-no-border" (click)="onRegister()">
+  <ion-toolbar mode="ios">
+    <ion-title>Register</ion-title>
+  </ion-toolbar>
+</ion-footer>

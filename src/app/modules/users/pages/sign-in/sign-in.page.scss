@@ -1,0 +1,13 @@
+ion-content {
+  #content {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+ion-content, ion-footer, ion-toolbar {
+  --background: var(--ion-meka-primary);
+  --color: #fff;
+}

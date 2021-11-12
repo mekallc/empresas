@@ -1,0 +1,40 @@
+ion-content {
+  #content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  ion-slides {
+    ion-slide {
+      height: 100%;
+      form {
+        width: 100%;
+        .avatar {
+          margin-top: 20px;
+          ion-avatar {
+            margin: auto;
+            margin-top: 0px;
+            width: 120px;
+            height: 120px;
+            img {
+              width: 100% !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+ion-footer {
+  ion-toolbar {
+    ion-item {
+      --background: none;
+    }
+  }
+}
+
+ion-content, ion-footer, ion-toolbar {
+  --background: var(--ion-meka-primary);
+  --color: #fff;
+}

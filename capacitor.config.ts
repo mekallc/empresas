@@ -1,7 +1,7 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.mekadevelopments.empresa',
+  appId: 'com.mekadevelopments.lt',
   appName: 'Meka Empresa',
   webDir: 'www',
   bundledWebRuntime: false,

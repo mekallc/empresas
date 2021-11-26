@@ -1,0 +1,16 @@
+<ion-content [fullscreen]="true">
+  <div class="map-wrapper">
+    <div id="map_center">
+      <ion-icon slot="icon-only" name="location" color="danger" size="large"></ion-icon>
+    </div>
+    <div #map id="map"></div>
+    <div id="address">
+      <ion-label class="ion-text-wrap">
+        <p class="mb-1"> <b>Address: </b> {{address}}</p>
+      </ion-label>
+      <ion-button mode="ios" (click)="onClose()" expand="block" color="primary" shape="round">
+        Agregar Dirección
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

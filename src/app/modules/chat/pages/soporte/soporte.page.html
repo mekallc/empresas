@@ -1,0 +1,45 @@
+<app-header title="Administrador" position="start" link="/pages/menu"></app-header>
+<ion-content>
+  <ion-list>
+    <ion-item button *ngFor="let f of storedFileNames" (click)="playFile(f)">
+      {{ f }}
+    </ion-item>
+  </ion-list>
+  <!-- <div class="imessage">
+    <p class="from-them">It was loud. We just laid there and said &ldquo;is this an earthquake? I think this is an earthquake.&rdquo;</p>
+    <p class="from-me">
+      Like is this an earthquake just go back to sleep
+      <span>
+        26-11 14:20
+        <ion-icon name="checkmark-done" [color]="true ? 'success' : 'light'"></ion-icon>
+      </span>
+    </p>
+    <p class="from-them margin-b_one">It&rsquo;s more like &ldquo;this is an earthquake. Check the Internet. Yup. Earthquake. This is the size. This is the epicenter. Check social media. Make sure the East Coast knows I&rsquo;m alive. Okay, try and go back to sleep.&rdquo;😱
+      <span> 26-11 14:30 </span>
+    </p>
+    <p class="from-me no-tail emoji">👍🏻</p>
+    <p class="from-me">Glad you&rsquo;re safe</p>
+  </div> -->
+</ion-content>
+<ion-footer class="messages">
+  <ion-toolbar>
+    <!-- <ion-input type="text" placeholder="Digite su mensaje..."></ion-input>
+    <ion-button slot="end" fill="clear" color="meka" size="small">
+      <ion-icon slot="icon-only" name="camera-outline"></ion-icon>
+    </ion-button>
+    <ion-button slot="end" fill="clear" color="meka" size="small">
+      <ion-icon slot="icon-only" name="mic-outline"></ion-icon>
+    </ion-button> -->
+    <div class="row aligns-item-center">
+      <div class="col-10">
+        <span *ngIf="!recording">Press and hold to record</span>
+        <span *ngIf="recording">{{ durationDisplay }}</span>
+      </div>
+      <div class="col-2">
+        <ion-button fill="clear" size="small" #recordBtn>
+          <ion-icon slot="icon-only" name="mic-outline"></ion-icon>
+        </ion-button>
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-footer>

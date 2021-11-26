@@ -1,0 +1,18 @@
+ion-content {
+  --background: var(--ion-meka-primary);
+  #company {
+    ion-item {
+      --background: none;
+      --color: #fff;
+      &:last-child {
+        --border-style: none;
+      }
+    }
+    ion-label {
+      p {
+        padding-left: 10px;
+        color: #d3c825;
+      }
+    }
+  }
+}

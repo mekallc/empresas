@@ -4,11 +4,12 @@
 
 export const environment = {
   production: false,
+  maps: 'AIzaSyAylhtwYmgO_nuFZsQzvm_z6vAOvbEk80Q',
   api: {
-    url: 'http://3.16.105.13:8000/api',
+    url: 'https://api.meka.do/api',
     version: 'v1',
     headers: {
-      // 'Content-Type':  'application/application/x-www-form-urlencoded'
+      Authorization: '',
     },
     admin: {email: 'knaimero@gmail.com', password: 'meka123'}
   }

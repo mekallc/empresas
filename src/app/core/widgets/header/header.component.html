@@ -1,0 +1,23 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar mode="ios">
+    <ion-title>
+      {{ title }}
+    </ion-title>
+    <ion-buttons [slot]="position" *ngIf="!link; else name">
+      <ion-button (click)="onNotification()">
+        <ion-icon slot="icon-only"
+          [name]="content > 0 ? 'notifications' : 'notifications-outline'"
+          [color]="content > 0 ? 'warning' : 'light'"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ng-template #name>
+  <ion-buttons [slot]="position">
+    <ion-button (click)="onMenu(link)">
+      <ion-icon slot="icon-only" name="chevron-back-outline" color="light"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ng-template>

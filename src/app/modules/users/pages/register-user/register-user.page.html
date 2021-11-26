@@ -1,0 +1,62 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="ios">
+    <ion-title>Sign Up</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div id="content">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-11 col-md-7">
+          <form [formGroup]="registerForm" class="meka-form">
+            <div class="avatar">
+              <ion-avatar>
+                <img [src]="avatar" (click)="takePicture()">
+              </ion-avatar>
+            </div>
+            <ion-item>
+              <ion-label mode="ios" position="floating">Firstname <ion-text color="danger">*</ion-text></ion-label>
+              <ion-input formControlName="fist_name" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label mode="ios"position="floating">Lastname <ion-text color="danger">*</ion-text></ion-label>
+              <ion-input required formControlName="last_name" type="text"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label mode="ios"position="floating">E-mail <ion-text color="danger">*</ion-text></ion-label>
+              <ion-input required type="email" inputmode="email" formControlName="email"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label mode="ios"position="floating">Password <ion-text color="danger">*</ion-text></ion-label>
+              <ion-input required type="password" formControlName="password"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label mode="ios"position="floating">Country <ion-text color="danger">*</ion-text></ion-label>
+              <ion-select placeholder="Country" interface="action-sheet" formControlName="country" mode="md">
+                <ion-select-option *ngFor="let item of countries$ | async" [value]="item.id">
+                  (+{{ item.phone_code }}) {{ item.name  }}</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label mode="ios"position="floating">Phone <ion-text color="danger">*</ion-text></ion-label>
+              <ion-input required formControlName="phone" type="phone" inputmode="numeric" placeholder="0000-0000"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label mode="ios"position="floating">Language <ion-text color="danger">*</ion-text></ion-label>
+              <ion-select placeholder="Idioma" interface="action-sheet" formControlName="language">
+                <ion-select-option *ngFor="let item of idioma" [value]="item.iso">
+                  {{ item.name  }}</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <div class="mt-4">
+              <ion-button expand="block" (click)="onSubmit()" color="light">
+                <ion-icon slot="start" name="checkmark-circle-outline" color="meka"></ion-icon>
+                Save User
+              </ion-button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

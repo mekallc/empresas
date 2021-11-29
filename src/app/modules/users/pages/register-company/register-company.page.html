@@ -1,6 +1,11 @@
 <ion-header class="ion-no-border">
   <ion-toolbar mode="ios">
     <ion-title>Registro de Empresa</ion-title>
+    <ion-buttons slot="end" *ngIf="modal">
+      <ion-button (click)="onClose()">
+        <ion-icon slot="icon-only" name="close" color="light"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content>

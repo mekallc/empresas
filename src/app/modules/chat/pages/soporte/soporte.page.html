@@ -1,11 +1,11 @@
 <app-header title="Administrador" position="start" link="/pages/menu"></app-header>
 <ion-content>
-  <ion-list>
+  <!-- <ion-list>
     <ion-item button *ngFor="let f of storedFileNames" (click)="playFile(f)">
       {{ f }}
     </ion-item>
-  </ion-list>
-  <!-- <div class="imessage">
+  </ion-list> -->
+  <div class="imessage">
     <p class="from-them">It was loud. We just laid there and said &ldquo;is this an earthquake? I think this is an earthquake.&rdquo;</p>
     <p class="from-me">
       Like is this an earthquake just go back to sleep
@@ -19,18 +19,19 @@
     </p>
     <p class="from-me no-tail emoji">👍🏻</p>
     <p class="from-me">Glad you&rsquo;re safe</p>
-  </div> -->
+  </div>
 </ion-content>
 <ion-footer class="messages">
   <ion-toolbar>
-    <!-- <ion-input type="text" placeholder="Digite su mensaje..."></ion-input>
+    <ion-input *ngIf="!recording" type="text" placeholder="Digite su mensaje..."></ion-input>
+    <span *ngIf="recording">{{ durationDisplay }}</span>
     <ion-button slot="end" fill="clear" color="meka" size="small">
       <ion-icon slot="icon-only" name="camera-outline"></ion-icon>
     </ion-button>
-    <ion-button slot="end" fill="clear" color="meka" size="small">
+    <ion-button slot="end" fill="clear" size="small" #recordBtn>
       <ion-icon slot="icon-only" name="mic-outline"></ion-icon>
-    </ion-button> -->
-    <div class="row aligns-item-center">
+    </ion-button>
+    <!-- <div class="row aligns-item-center">
       <div class="col-10">
         <span *ngIf="!recording">Press and hold to record</span>
         <span *ngIf="recording">{{ durationDisplay }}</span>
@@ -40,6 +41,6 @@
           <ion-icon slot="icon-only" name="mic-outline"></ion-icon>
         </ion-button>
       </div>
-    </div>
+    </div> -->
   </ion-toolbar>
 </ion-footer>

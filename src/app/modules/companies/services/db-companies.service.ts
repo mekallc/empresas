@@ -20,6 +20,6 @@ export class DbCompaniesService {
   }
 
   getCompanies() {
-    return this.ms.getMaster('user/upd/');
+    return this.ms.getMasterHeaders('user/company');
   }
 }

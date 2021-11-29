@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertController, LoadingController, ModalController, NavController, ToastController } from '@ionic/angular';
 import { Observable } from 'rxjs';
@@ -7,6 +7,7 @@ import { StorageService } from '@core/services/storage.service';
 import { DbUserService } from '@modules/users/services/db-user.service';
 import { tap } from 'rxjs/operators';
 import { MapsWidgetComponent } from './../../widgets/maps/maps.component';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-register-company',
@@ -15,6 +16,7 @@ import { MapsWidgetComponent } from './../../widgets/maps/maps.component';
 })
 export class RegisterCompanyPage implements OnInit {
 
+  @Input() modal = false;
   @Output() output: EventEmitter<boolean> = new EventEmitter();
   factoryForm: FormGroup;
   experts$: Observable<any[]>;
@@ -60,7 +62,11 @@ export class RegisterCompanyPage implements OnInit {
           duration: 2000, mode: 'ios'
         });
         await toast.present();
-        this.nav.navigateRoot('pages/companies');
+        if (this.modal) {
+          this.onClose();
+        } else {
+          this.nav.navigateRoot('pages/companies');
+        }
       },
       err => {
         loading.dismiss();
@@ -99,6 +105,8 @@ export class RegisterCompanyPage implements OnInit {
     await alert.present();
   };
 
+  onClose = () => this.modalCtrl.dismiss();
+
   private setAddress = () => {
     this.db.getAddress$().subscribe((res: any) => {
       if (res) {
@@ -133,6 +141,7 @@ export class RegisterCompanyPage implements OnInit {
       }
     });
   };
+
   private parseData = (value: any) => {
     const data: any = {
       name: value.name,
@@ -148,4 +157,5 @@ export class RegisterCompanyPage implements OnInit {
     };
     return data;
   };
+
 }

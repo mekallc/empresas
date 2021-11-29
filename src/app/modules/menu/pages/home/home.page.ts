@@ -1,7 +1,6 @@
 import { LoadingController, NavController } from '@ionic/angular';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { AppVersion } from '@ionic-native/app-version/ngx';
-
+import { App } from '@capacitor/app';
 import { StorageService } from '@core/services/storage.service';
 
 import { timer } from 'rxjs';
@@ -13,6 +12,8 @@ import { timer } from 'rxjs';
 })
 export class HomePage implements OnInit, AfterViewInit {
 
+  position: number;
+  appInfo: any;
   active = true;
   content = [
     { name: 'Perfil', url: '' },
@@ -26,20 +27,16 @@ export class HomePage implements OnInit, AfterViewInit {
   constructor(
     private nav: NavController,
     private storage: StorageService,
-    private appVersion: AppVersion,
     private loadingCtrl: LoadingController,
   ) {}
 
   async ngOnInit() {
     const user = await this.storage.getStorage('user');
     this.user = user;
-    this.appVersion.getAppName();
-    this.appVersion.getPackageName();
-    this.appVersion.getVersionCode();
-    this.appVersion.getVersionNumber();
+    this.appInfoCapacitor();
   }
 
-  ngAfterViewInit = () => {
+  ngAfterViewInit = async () => {
   };
 
   logout = async () => {
@@ -52,5 +49,14 @@ export class HomePage implements OnInit, AfterViewInit {
     await this.storage.removeStorage('token');
     await this.storage.removeStorage('refresh');
     timer(1500).subscribe(() => this.nav.navigateRoot('/user/sign-in'));
+  };
+
+  appInfoCapacitor = async () => {
+    const appInfo = await App.getInfo();
+    this.appInfo = appInfo;
+  };
+
+  logScrolling = (ev: any) => {
+    this.position = ev.detail.scrollTop;
   };
 }

@@ -1,5 +1,5 @@
 <app-header title="Menú"></app-header>
-<ion-content>
+<ion-content [scrollEvents]="true" (ionScroll)="logScrolling($event)">
   <div id="menu">
     <div class="content">
       <div class="container">
@@ -37,7 +37,7 @@
         </ion-item>
         <div class="my-3">
           <ion-label class="ion-text-right">
-            <h3 class="text-right mb-0">Meka v.1.1.0</h3>
+            <h3 class="text-right mb-0">{{ appInfo?.name }} v{{ appInfo?.version }}</h3>
           </ion-label>
         </div>
       </div>

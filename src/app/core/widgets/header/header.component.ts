@@ -1,5 +1,6 @@
-import { NavController } from '@ionic/angular';
+import { NavController, ModalController } from '@ionic/angular';
 import { Component, Input, OnInit } from '@angular/core';
+import { NotificationsComponent } from '@core/widgets/notifications/notifications.component';
 
 @Component({
   selector: 'app-header',
@@ -14,11 +15,16 @@ export class HeaderComponent implements OnInit {
   content = 0;
 
   constructor(
-    private nav: NavController
+    private nav: NavController,
+    private modalCtrl: ModalController,
   ) { }
 
   ngOnInit() {}
 
-  onNotification = () => console.log('onNotification');
+  onNotification = async () => {
+    const modal = await this.modalCtrl.create({ component: NotificationsComponent });
+    await modal.present();
+  };
+
   onMenu = (item: string) => this.nav.navigateRoot(item);
 }

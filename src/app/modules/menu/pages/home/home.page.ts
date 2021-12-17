@@ -1,9 +1,10 @@
-import { LoadingController, NavController } from '@ionic/angular';
+import { LoadingController, ModalController, NavController } from '@ionic/angular';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { App } from '@capacitor/app';
 import { StorageService } from '@core/services/storage.service';
 
 import { timer } from 'rxjs';
+import { PostContentsWidgetComponent } from '@modules/contents/widget/post/post.component';
 
 @Component({
   selector: 'app-home',
@@ -16,17 +17,24 @@ export class HomePage implements OnInit, AfterViewInit {
   appInfo: any;
   active = true;
   content = [
-    { name: 'Perfil', url: '' },
+    { name: 'Perfil', url: '/user/profile' },
     { name: 'Compañias', url: '/pages/companies' },
     { name: 'Mensajes', url: '/pages/chat/soporte' },
     { name: 'Membresia', url: '' },
-];
-  subContent = ['Central de Ayuda', 'Política de Privacidad', 'Terminos de Uso', 'Sobre Meka', 'Evalua App'];
+  ];
+  subContent = [
+    { name: 'Help Center', modal: true },
+    { name: 'Privacy Policy', modal: true },
+    { name: 'Term of Use', modal: true },
+    { name: 'About Meka', modal: true },
+    { name: 'Rate the App', url: '' }
+  ];
 
   user: any;
   constructor(
     private nav: NavController,
     private storage: StorageService,
+    private modalCtrl: ModalController,
     private loadingCtrl: LoadingController,
   ) {}
 
@@ -45,10 +53,10 @@ export class HomePage implements OnInit, AfterViewInit {
       duration: 1500
     });
     await load.present();
-    await this.storage.removeStorage('user');
-    await this.storage.removeStorage('token');
+    await this.storage.removeStorage('userCompany');
+    await this.storage.removeStorage('tokenCompany');
     await this.storage.removeStorage('refresh');
-    timer(1500).subscribe(() => this.nav.navigateRoot('/user/sign-in'));
+    timer(1500).subscribe(() => this.nav.navigateRoot('/user/signIn'));
   };
 
   appInfoCapacitor = async () => {
@@ -59,4 +67,14 @@ export class HomePage implements OnInit, AfterViewInit {
   logScrolling = (ev: any) => {
     this.position = ev.detail.scrollTop;
   };
+
+  onPost = async (title: string) => {
+    const modal = await this.modalCtrl.create({
+      component: PostContentsWidgetComponent,
+      componentProps: { title }
+    });
+    await modal.present();
+  };
+
+  onLink = (url: string) => this.nav.navigateRoot(url);
 }

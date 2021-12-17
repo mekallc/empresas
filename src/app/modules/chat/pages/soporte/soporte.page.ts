@@ -1,102 +1,63 @@
-import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
-import { Directory, Filesystem } from '@capacitor/filesystem';
-import { Haptics, ImpactStyle } from '@capacitor/haptics';
-import { GestureController } from '@ionic/angular';
-import { RecordingData, VoiceRecorder } from 'capacitor-voice-recorder';
+import { Component, OnInit, ElementRef, ViewChild, Input, AfterViewInit } from '@angular/core';
+import { IonContent, ModalController } from '@ionic/angular';
+import { Observable } from 'rxjs';
+import { StorageService } from '@core/services/storage.service';
+import { ConnectService } from './../../services/connect.service';
 
 @Component({
   selector: 'app-soporte-chat',
   templateUrl: 'soporte.page.html',
   styleUrls: ['soporte.page.scss'],
 })
-export class SoporteChatPage implements OnInit, AfterViewInit {
 
-  @ViewChild('recordBtn', { read: ElementRef }) recordBtn: ElementRef;
-  recording = false;
-  storedFileNames = [];
-  durationDisplay = '';
-  duration: number;
+export class SoporteChatPage implements OnInit, AfterViewInit {
+  @Input() user: any;
+  @ViewChild('content') content: IonContent;
+  @ViewChild('msg', { read: ElementRef }) msg: ElementRef;
+  items: any;
+  message = '';
+  format = 'dd/MM HH:mm';
+  items$: Observable<any>;
 
   constructor(
-    private gestureCtrl: GestureController
-  ) {}
+    private conn: ConnectService,
+    private storage: StorageService,
+    private modalCtrl: ModalController,
+  ) { }
 
-  ngOnInit(): void {
-    this.loadFiles();
-    VoiceRecorder.requestAudioRecordingPermission();
+  ngOnInit() {
+    this.onCreateRoom();
+    this.items$ = this.conn.getMessages();
   }
 
   ngAfterViewInit() {
-    const longpress = this.gestureCtrl.create({
-      el: this.recordBtn.nativeElement,
-      threshold: 0,
-      gestureName: 'long-press',
-      onStart: ev => {
-        Haptics.impact({ style: ImpactStyle.Light });
-        this.startRecording();
-        this.calculateDuration();
-      },
-      onEnd: ev => {
-        Haptics.impact({ style: ImpactStyle.Light });
-        this.stopRecording();
-      },
-    }, true);
-    longpress.enable();
+    setTimeout(() => this.content.scrollToBottom(300), 100);
+    this.conn.readMessage().subscribe((res) => {});
   }
-
-  calculateDuration = () => {
-    if(!this.recording) {
-      this.duration = 0;
-      this.durationDisplay = '';
-      return;
-    }
-    this.duration += 1;
-    console.log(this.duration);
-    const min = Math.floor(this.duration / 60);
-    const sec = (this.duration % 60).toString().padStart(2, '0');
-    this.durationDisplay = `${min}:${sec}`;
-    setTimeout(() => {
-      this.calculateDuration();
-    }, 1000);
-  };
-
-  loadFiles = async () => {
-    Filesystem.readdir({ path: '', directory: Directory.Data })
-      .then((result => this.storedFileNames = result.files));
-  };
-
-  startRecording = () => {
-    if (this.recording) {
-      return;
-    }
-    this.recording = true;
-    VoiceRecorder.startRecording();
-  };
-
-  stopRecording = () => {
-    if (!this.recording) {
-      return;
-    }
-    VoiceRecorder.stopRecording().then(async (result: RecordingData) => {
-      this.recording = false;
-      if (result.value && result.value.recordDataBase64) {
-        const recordData = result.value.recordDataBase64;
-        const fileName = new Date().getTime() + '.wav';
-        await Filesystem.writeFile({
-          path: fileName,
-          directory: Directory.Data,
-          data: recordData
-        });
-        this.loadFiles();
-      }
+  onCreateRoom = () => {
+    this.storage.getStorage('userClient').then((user) => {
+      this.conn.getChatId(user.email).subscribe(async (res) => {
+        this.items = res;
+        if(res) { return; }
+        await this.conn.createMessageId(user);
+      });
     });
   };
 
-  playFile = async (fileName: any) => {
-    const audioFile = await Filesystem.readFile({ path: fileName, directory: Directory.Data, });
-    const base64Sound = audioFile.data;
-    const audioRef = new Audio(`data: audio/aac;base64,${base64Sound}`);
-    audioRef.oncanplaythrough = () => audioRef.play();
-    audioRef.load();
+  sendMessageKeypress = (ev: any) => {
+    if (ev !== 13) { return; }
+    this.sendMessage();
+  };
+
+  sendMessage = () => {
+    if (this.message.length === 0) { return; }
+    this.conn.sendMessage('cliente01@gmail.com', this.message);
+    this.message = '';
+  };
+
+  onClose = () => this.modalCtrl.dismiss();
+
+  logScrolling(ev: any) {
+    // console.log(ev);
   };
 }

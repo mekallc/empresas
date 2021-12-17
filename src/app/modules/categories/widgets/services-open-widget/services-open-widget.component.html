@@ -1,0 +1,19 @@
+<div class="widget-slides">
+  <div class="title">
+    <ion-label>
+      <h2>Open Services</h2>
+    </ion-label>
+  </div>
+  <ion-slides mode="ios" [options]="options">
+    <ion-slide *ngFor="let item of [1,2,3,4]">
+      <div class="service">
+        <ion-label>
+          <p>Electrical Breakdown</p>
+          <h2>311000000{{item}}</h2>
+          <p>Toyota Corolla</p>
+          <h4>3Km</h4>
+        </ion-label>
+      </div>
+    </ion-slide>
+  </ion-slides>
+</div>

@@ -6,14 +6,14 @@ import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 import { HomePageRoutingModule } from './home-routing.module';
 import { HeaderModule } from '@core/widgets/header/header.module';
-import { RegisterCompanyPageModule } from '@modules/users/pages/register-company/register-company.module';
+import { RegisterCompanyPageModule } from './../register/register.module';
 
 
 @NgModule({
   imports: [
-    CommonModule,
     FormsModule,
     IonicModule,
+    CommonModule,
     HeaderModule,
     HomePageRoutingModule,
     RegisterCompanyPageModule,

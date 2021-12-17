@@ -1,22 +1,8 @@
-import { Routes, RouterModule } from '@angular/router';
-
-const app: Routes = [
-  {
-    path: 'sign-in',
-    loadChildren: () => import('./pages/sign-in/sign-in.module').then( m => m.SignInPageModule)
-  },
-  {
-    path: 'sign-up',
-    loadChildren: () => import('./pages/register-user/register-user.module').then( m => m.RegisterUserPageModule)
-  },
-  {
-    path: 'register-company',
-    loadChildren: () => import('./pages/register-company/register-company.module').then( m => m.RegisterCompanyPageModule)
-  },
-  {
-    path: 'maps',
-    loadChildren: () => import('./widgets/maps/maps.module').then( m => m.MapsUserWidgetModule)
-  },
+import { RouterModule, Routes } from '@angular/router';
+const routes: Routes = [
+  {path: 'signUp', loadChildren: () => import('./pages/sign-up/sign-up.module').then( m => m.SignUpPageModule) },
+  {path: 'signIn', loadChildren: () => import('./pages/sign-in/sign-in.module').then( m => m.SignInPageModule) },
+  {path: 'profile', loadChildren: () => import('./pages/get-profile/get-profile.module').then( m => m.GetProfilePageModule) },
 ];
 
-export const userRoute = RouterModule.forChild(app);
+export const userRoute = RouterModule.forChild(routes);

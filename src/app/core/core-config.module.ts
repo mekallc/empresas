@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
-import { AppVersion } from '@ionic-native/app-version/ngx';
+import { Globalization } from '@ionic-native/globalization/ngx';
 
 
 @NgModule({
@@ -11,8 +11,8 @@ import { AppVersion } from '@ionic-native/app-version/ngx';
 
   ],
   providers: [
-    AppVersion,
     NativeGeocoder,
+    Globalization
   ]
 })
 export class CoreConfigModule { }

@@ -1,18 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
-
-import { SignInPageRoutingModule } from './sign-in-routing.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { SignInPage } from './sign-in.page';
+import { SignInPageRoutingModule } from './sign-in-routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    ReactiveFormsModule,
+    FormsModule,
     IonicModule,
+    TranslateModule,
+    ReactiveFormsModule,
     SignInPageRoutingModule
   ],
   declarations: [SignInPage]

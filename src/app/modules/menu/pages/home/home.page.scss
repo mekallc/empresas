@@ -1,19 +1,48 @@
 ion-content {
   --background: var(--ion-meka-primary);
   #menu {
-    .content {
-      margin-top: 20px;
+    .profile {
+      margin-top: 1.5rem;
       .avatar {
         ion-avatar {
           margin: auto;
           margin-top: 0px;
-          width: 100px;
-          height: 100px;
+          width:  90px;
+          height: 90px;
           img {
             width: 100% !important;
           }
         }
       }
+      .getDatos {
+        --color: #fff;
+        .name {
+          color: #fafafa;
+          font-weight: 600;
+        }
+        .jobs {
+          color: #fff;;
+        }
+        .rating {
+          color: rgb(203, 159, 48);
+          font-weight: 600;
+        }
+      }
+    }
+    .link {
+      background: none;
+      ion-item {
+        --background: none;
+        ion-label {
+          --color: #fff;
+        }
+      }
+    }
+
+
+    .content {
+      margin-top: 20px;
+
       padding: 1rem 0;
       ion-item {
         --background: none;

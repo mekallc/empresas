@@ -1,61 +1,81 @@
-import { AlertController, LoadingController, ModalController, NavController, ToastController } from '@ionic/angular';
-import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DbUserService } from '@modules/users/services/db-user.service';
-import { StorageService } from '@core/services/storage.service';
+import { StorageService } from 'src/app/core/services/storage.service';
+import { IonSlides, NavController, AlertController, LoadingController } from '@ionic/angular';
+import { AuthService } from 'src/app/modules/users/services/auth.service';
 
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.page.html',
   styleUrls: ['./sign-in.page.scss'],
 })
-export class SignInPage implements OnInit {
+export class SignInPage implements OnInit, AfterViewInit {
+
+  @ViewChild('slides') slides: IonSlides;
+  options = { initialSlide: 0, };
 
   loginForm: FormGroup;
+  forgotPasswordForm: FormGroup;
 
   constructor(
     private fb: FormBuilder,
-    private db: DbUserService,
+    private db: AuthService,
     private nav: NavController,
+    private router: Router,
     private storage: StorageService,
-    private modalCtrl: ModalController,
     private alertCtrl: AlertController,
-    private toastCtrl: ToastController,
-    private loadingCtrl: LoadingController,
+    private loadCtrl: LoadingController,
   ) { }
 
   ngOnInit() {
     this.loadForm();
   }
 
-  onSubmit = async () => {
-    const loading = await this.loadingCtrl.create({ message: 'Loading...' });
-    await loading.present();
-    this.db.access(this.loginForm.value).subscribe(
-      async (res) => {
-        await loading.dismiss();
-        const toast = await this.toastCtrl.create({
-          message: 'Bienvenido ' + res.fist_name,
-          mode: 'ios', position: 'top', duration: 1500
-        });
-        await toast.present();
-        this.nav.navigateRoot('pages/home');
-      },
-      err => {
-        loading.dismiss();
-        console.log(err);
-      }
-    );
+  ngAfterViewInit() {
+    this.slides.lockSwipes(true);
   };
 
-  onForgot = () => console.log('on Forgot');
-  onRegister = () => this.nav.navigateForward('user/sign-up');
+  onSubmit = async () => {
+    if (this.loginForm.invalid) { return; }
+    const load = await this.loadCtrl.create({message: 'Loading...'});
+    await load.present();
+    this.db.signIn(this.loginForm.value).subscribe( async (res: any) => {
+      await load.dismiss();
+      return this.nav.navigateRoot('/pages/home');
+    }, async (err: any) => {
+      await load.dismiss();
+      console.log(err);
+      await this.db.alertErr(err.error);
+    });
+    // console.log(this.loginForm.value);
+    // this.auth.signIn(this.loginForm.value)
+    // .then(async (res) => {
+    //   await load.dismiss();
+    // })
+    // .catch(async (err) => {
+    //   await load.dismiss();
+    //   console.log(err);
+    // });
+  };
+
+  onForgotPassword = () => console.log('óoSubmit');
 
   loadForm = () => {
     this.loginForm = this.fb.group({
+      email: ['cliente2222@gmail.com', [Validators.required, Validators.email]],
+      password: ['123456', [Validators.required, Validators.minLength(4)]],
+    });
+    this.forgotPasswordForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(4)]],
     });
   };
 
+  goToSlides = (slide: number) => {
+    this.slides.lockSwipes(false);
+    this.slides.slideTo(slide);
+    this.slides.lockSwipes(true);
+  };
+
+  onRegister = () => this.nav.navigateForward('/user/signUp');
 }

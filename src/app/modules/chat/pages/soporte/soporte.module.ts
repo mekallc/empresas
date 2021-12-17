@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SoporteChatPage } from './soporte.page';
 import { SoporteChatPageRoutingModule } from './soporte-routing.module';
@@ -14,6 +14,7 @@ import { HeaderModule } from '@core/widgets/header/header.module';
     IonicModule,
     CommonModule,
     HeaderModule,
+    ReactiveFormsModule,
     SoporteChatPageRoutingModule
   ],
   exports: [SoporteChatPage],

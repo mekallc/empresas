@@ -1,24 +1,32 @@
 <app-header title="Compañias"></app-header>
 <ion-content>
-  <div id="company">
-    <ion-radio-group [value]="2">
-      <ion-item *ngFor="let item of [1,2]">
-        <ion-label>
-          <h2 class="mb-2">Taller el Pajarito</h2>
-          <p>
-            <ion-icon name="mail"></ion-icon>
-            kd4@gmail.com</p>
-          <p>
-            <ion-icon name="call"></ion-icon>
-            +5541998819501</p>
-          <p class="ion-text-wrap">
-            <ion-icon name="location"></ion-icon>
-            Rua Fulano Tal 198, Capão Raso, Curitiba-Parana</p>
-        </ion-label>
-        <ion-radio slot="end" [value]="item"></ion-radio>
-      </ion-item>
-    </ion-radio-group>
-  </div>
+  <ng-template *ngIf="total > 0; else loading">
+    <div id="company">
+      <ion-radio-group [value]="2" *ngFor="let item of lists$ | async">
+        <ion-item *ngFor="let item of [1,2]">
+          <ion-label>
+            <h2 class="mb-2">Taller el Pajarito</h2>
+            <p>
+              <ion-icon name="mail"></ion-icon>
+              kd4@gmail.com</p>
+            <p>
+              <ion-icon name="call"></ion-icon>
+              +5541998819501</p>
+            <p class="ion-text-wrap">
+              <ion-icon name="location"></ion-icon>
+              Rua Fulano Tal 198, Capão Raso, Curitiba-Parana</p>
+          </ion-label>
+          <ion-radio slot="end" [value]="item"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </div>
+  </ng-template>
+  <ng-template #loading>
+    <ion-label>
+      <h2 class="white-text text-center mt-4">No record!.</h2>
+    </ion-label>
+  </ng-template>
+
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color="warning" (click)="onRegister()">
       <ion-icon name="add"></ion-icon>

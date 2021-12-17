@@ -1,46 +1,43 @@
-<app-header title="Administrador" position="start" link="/pages/menu"></app-header>
-<ion-content>
-  <!-- <ion-list>
-    <ion-item button *ngFor="let f of storedFileNames" (click)="playFile(f)">
-      {{ f }}
-    </ion-item>
-  </ion-list> -->
-  <div class="imessage">
-    <p class="from-them">It was loud. We just laid there and said &ldquo;is this an earthquake? I think this is an earthquake.&rdquo;</p>
-    <p class="from-me">
-      Like is this an earthquake just go back to sleep
-      <span>
-        26-11 14:20
-        <ion-icon name="checkmark-done" [color]="true ? 'success' : 'light'"></ion-icon>
-      </span>
-    </p>
-    <p class="from-them margin-b_one">It&rsquo;s more like &ldquo;this is an earthquake. Check the Internet. Yup. Earthquake. This is the size. This is the epicenter. Check social media. Make sure the East Coast knows I&rsquo;m alive. Okay, try and go back to sleep.&rdquo;😱
-      <span> 26-11 14:30 </span>
-    </p>
-    <p class="from-me no-tail emoji">👍🏻</p>
-    <p class="from-me">Glad you&rsquo;re safe</p>
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="end">
+      <ion-button (click)="onClose()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Administrador</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content #content  [scrollEvents]="true" [forceOverscroll]="true"
+  (ionScroll)="logScrolling($event)">
+  <div class="message" *ngFor="let item of items$ | async">
+    <div class="imessage">
+      <p [ngClass]="item.type === 'ADMIN' ? 'from-them' : 'from-me'">
+        {{ item.message }}
+        <span>
+          {{item.createdAt.toMillis() | date: format}}
+          <ion-icon *ngIf="item.type === 'ME' || item.type ==='USER'"
+            name="checkmark-done" [color]="item.status === 'READ' ? 'success' : 'light'">
+          </ion-icon>
+        </span>
+      </p>
+    </div>
   </div>
 </ion-content>
-<ion-footer class="messages">
+<ion-footer class="">
   <ion-toolbar>
-    <ion-input *ngIf="!recording" type="text" placeholder="Digite su mensaje..."></ion-input>
-    <span *ngIf="recording">{{ durationDisplay }}</span>
-    <ion-button slot="end" fill="clear" color="meka" size="small">
-      <ion-icon slot="icon-only" name="camera-outline"></ion-icon>
-    </ion-button>
-    <ion-button slot="end" fill="clear" size="small" #recordBtn>
-      <ion-icon slot="icon-only" name="mic-outline"></ion-icon>
-    </ion-button>
-    <!-- <div class="row aligns-item-center">
+    <div class="row g-2 justify-content-center">
       <div class="col-10">
-        <span *ngIf="!recording">Press and hold to record</span>
-        <span *ngIf="recording">{{ durationDisplay }}</span>
+        <ion-input [(ngModel)]="message" placeholder="Digite su mensaje..."
+          enterkeyhint="enter" mode="ios" (keypress)="sendMessageKeypress($event.keyCode)"></ion-input>
       </div>
       <div class="col-2">
-        <ion-button fill="clear" size="small" #recordBtn>
-          <ion-icon slot="icon-only" name="mic-outline"></ion-icon>
-        </ion-button>
+        <div class="text-center">
+          <ion-button fill="clear" (click)="sendMessage()">
+            <ion-icon name="send" color="primary"></ion-icon>
+          </ion-button>
+        </div>
       </div>
-    </div> -->
+    </div>
   </ion-toolbar>
 </ion-footer>

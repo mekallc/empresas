@@ -6,6 +6,8 @@ import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 import { HeaderModule } from '@core/widgets/header/header.module';
+import { BannersWidgetModule } from '@core/widgets/banners/banners.module';
+import { ServicesOpenWidgetModule } from '@modules/categories/widgets/services-open-widget/services-open-widget.module';
 
 
 @NgModule({
@@ -14,7 +16,9 @@ import { HeaderModule } from '@core/widgets/header/header.module';
     IonicModule,
     HeaderModule,
     CommonModule,
-    HomePageRoutingModule
+    BannersWidgetModule,
+    HomePageRoutingModule,
+    ServicesOpenWidgetModule,
   ],
   declarations: [HomePage]
 })

@@ -26,10 +26,7 @@ const routes: Routes = [
         path: 'chat',
         loadChildren: () => import('@modules/chat/chat.module').then( m => m.ChatModule)
       },
-      // {
-      //   path: 'chat',
-      //   loadChildren: () => import('@modules/chat/pages/home/home.module').then( m => m.HomePageModule)
-      // },
+      { path: 'services', loadChildren: () => import('@modules/categories/pages/home/home.module').then(m => m.HomePageModule) },
       {
         path: 'companies',
         loadChildren: () => import('@modules/companies/pages/home/home.module').then( m => m.HomePageModule)

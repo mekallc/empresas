@@ -1,0 +1,24 @@
+.widget-slides {
+  margin: 1.2rem .5rem 0;
+  .title {
+    ion-label {
+      h2 {
+        color: #fff;
+        margin-bottom: .75rem;
+        font-weight: 600;
+      }
+    }
+  }
+  .service {
+    text-align: left !important;
+    padding: .75rem;
+    width: 100%;
+    background-color: #fefefe;
+    border-radius: 15px;
+    ion-label {
+      h2 {
+        font-weight: 700;
+      }
+    }
+  }
+}

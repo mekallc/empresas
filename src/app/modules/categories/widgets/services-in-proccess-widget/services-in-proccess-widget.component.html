@@ -1,0 +1,16 @@
+<ion-list>
+  <ion-list-header>
+    <ion-label>
+      <h2>In Proccess Services</h2>
+    </ion-label>
+  </ion-list-header>
+  <ion-item button *ngFor="let item of [1,2,3,4]">
+    <ion-label>
+      <p>Electrical Breakdown</p>
+      <h2>311000000{{item}}</h2>
+      <p>Toyota Corolla</p>
+      <h4>Yenny Delgado</h4>
+    </ion-label>
+    <ion-icon slot="end" color="warning" name="chatbubbles"></ion-icon>
+  </ion-item>
+</ion-list>

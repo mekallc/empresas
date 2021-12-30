@@ -1,166 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AndroidLayouts">
-    <shared>
-      <config />
-    </shared>
-  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c2ab2a3e-9792-4eec-b957-83700d756058" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/capacitor.build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/google-services.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/proguard-rules.pro" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/androidTest/java/com/getcapacitor/myapp/ExampleInstrumentedTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/capacitor.config.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/capacitor.plugins.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mekadevelopments/lt/MainActivity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-land-hdpi/splash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-land-mdpi/splash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-land-xhdpi/splash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-land-xxhdpi/splash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-land-xxxhdpi/splash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-port-hdpi/splash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-port-mdpi/splash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-port-xhdpi/splash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-port-xxhdpi/splash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-port-xxxhdpi/splash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_launcher_background.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/splash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher_foreground.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher_foreground.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/ic_launcher_background.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/xml/config.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/xml/file_paths.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/getcapacitor/myapp/ExampleUnitTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/capacitor.settings.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/variables.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/App/App.xcodeproj/project.pbxproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/App/App.xcodeproj/project.xcworkspace/contents.xcworkspacedata" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/App/App.xcworkspace/contents.xcworkspacedata" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/App/App.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/App/App/AppDelegate.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/App/App/Assets.xcassets/AppIcon.appiconset/AppIcon-20x20@1x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/App/App/Assets.xcassets/AppIcon.appiconset/AppIcon-20x20@2x-1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/App/App/Assets.xcassets/AppIcon.appiconset/AppIcon-20x20@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/App/App/Assets.xcassets/AppIcon.appiconset/AppIcon-20x20@3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/App/App/Assets.xcassets/AppIcon.appiconset/AppIcon-29x29@1x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/App/App/Assets.xcassets/AppIcon.appiconset/AppIcon-29x29@2x-1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/App/App/Assets.xcassets/AppIcon.appiconset/AppIcon-29x29@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/App/App/Assets.xcassets/AppIcon.appiconset/AppIcon-29x29@3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/App/App/Assets.xcassets/AppIcon.appiconset/AppIcon-40x40@1x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/App/App/Assets.xcassets/AppIcon.appiconset/AppIcon-40x40@2x-1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/App/App/Assets.xcassets/AppIcon.appiconset/AppIcon-40x40@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/App/App/Assets.xcassets/AppIcon.appiconset/AppIcon-40x40@3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/App/App/Assets.xcassets/AppIcon.appiconset/AppIcon-512@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/App/App/Assets.xcassets/AppIcon.appiconset/AppIcon-60x60@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/App/App/Assets.xcassets/AppIcon.appiconset/AppIcon-60x60@3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/App/App/Assets.xcassets/AppIcon.appiconset/AppIcon-76x76@1x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/App/App/Assets.xcassets/AppIcon.appiconset/AppIcon-76x76@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/App/App/Assets.xcassets/AppIcon.appiconset/AppIcon-83.5x83.5@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/App/App/Assets.xcassets/AppIcon.appiconset/Contents.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/App/App/Assets.xcassets/Contents.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/App/App/Assets.xcassets/Splash.imageset/Contents.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/App/App/Assets.xcassets/Splash.imageset/splash-2732x2732-1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/App/App/Assets.xcassets/Splash.imageset/splash-2732x2732-2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/App/App/Assets.xcassets/Splash.imageset/splash-2732x2732.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/App/App/Base.lproj/LaunchScreen.storyboard" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/App/App/Base.lproj/Main.storyboard" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/App/App/Info.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/App/App/capacitor.config.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/App/App/config.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/App/Podfile" beforeDir="false" />
+    <list default="true" id="f940a6f4-3cb3-4dfc-920e-068aef3db29b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../.eslintrc.json" beforeDir="false" afterPath="$PROJECT_DIR$/../.eslintrc.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../capacitor.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../capacitor.config.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/AppDelegate.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resources/icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/icon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resources/splash.png" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/splash.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/app.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/app.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/app/app.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/app.routes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/core/services/auth.guard.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/core/services/auth.guard.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/core/core-config.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/core/core-config.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/core/services/firebase.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/core/services/firebase.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/app/core/services/http.interceptor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/core/services/http.interceptor.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/core/services/master.service.spec.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/app/core/services/master.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/core/services/master.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/modules/chat/chat.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modules/chat/chat.routes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/modules/chat/pages/home/home-routing.module.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/modules/chat/pages/home/home.module.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/modules/chat/pages/home/home.page.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/modules/chat/pages/home/home.page.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/modules/chat/pages/home/home.page.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/modules/chat/pages/home/home.page.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/modules/chat/pages/soporte/soporte.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modules/chat/pages/soporte/soporte.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/modules/chat/pages/soporte/soporte.page.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modules/chat/pages/soporte/soporte.page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/modules/chat/pages/soporte/soporte.page.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modules/chat/pages/soporte/soporte.page.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/core/widgets/header/header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/core/widgets/header/header.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/core/widgets/header/header.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/core/widgets/header/header.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/core/widgets/header/header.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/core/widgets/header/header.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/core/widgets/notifications/notifications.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/core/widgets/notifications/notifications.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/core/widgets/notifications/notifications.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/core/widgets/notifications/notifications.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/modules/categories/pages/home/home.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modules/categories/pages/home/home.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/modules/categories/pages/waiting/waiting.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modules/categories/pages/waiting/waiting.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/modules/categories/pages/waiting/waiting.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modules/categories/pages/waiting/waiting.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/modules/categories/pages/waiting/waiting.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modules/categories/pages/waiting/waiting.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/modules/categories/services/db-categories.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modules/categories/services/db-categories.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/modules/categories/widgets/home/home.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/modules/categories/widgets/home/home.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/modules/categories/widgets/home/home.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/modules/categories/widgets/home/home.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/modules/categories/widgets/home/home.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/modules/categories/widgets/services-open-widget/services-open-widget.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modules/categories/widgets/services-open-widget/services-open-widget.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/modules/categories/widgets/services-open-widget/services-open-widget.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modules/categories/widgets/services-open-widget/services-open-widget.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/modules/categories/widgets/services-open-widget/services-open-widget.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/modules/categories/widgets/services-open-widget/services-open-widget.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modules/categories/widgets/services-open-widget/services-open-widget.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/modules/categories/widgets/services-open-widget/services-open-widget.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modules/categories/widgets/services-open-widget/services-open-widget.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/modules/chat/pages/rooms/rooms.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modules/chat/pages/rooms/rooms.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/modules/chat/pages/rooms/rooms.page.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modules/chat/pages/rooms/rooms.page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/modules/chat/pages/rooms/rooms.page.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modules/chat/pages/rooms/rooms.page.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/app/modules/chat/pages/soporte/soporte.page.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modules/chat/pages/soporte/soporte.page.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/modules/chat/services/connect.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modules/chat/services/connect.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/modules/companies/pages/home/home.page.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modules/companies/pages/home/home.page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/modules/companies/pages/home/home.page.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modules/companies/pages/home/home.page.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/app/modules/companies/pages/home/home.page.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modules/companies/pages/home/home.page.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/app/modules/companies/services/db-companies.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modules/companies/services/db-companies.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/modules/users/pages/register-company/register-company-routing.module.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/modules/users/pages/register-company/register-company.module.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/modules/users/pages/register-company/register-company.page.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/modules/users/pages/register-company/register-company.page.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/modules/users/pages/register-company/register-company.page.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/modules/users/pages/register-user/register-user-routing.module.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/modules/users/pages/register-user/register-user.module.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/modules/users/pages/register-user/register-user.page.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/modules/users/pages/register-user/register-user.page.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/modules/users/pages/register-user/register-user.page.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/modules/users/pages/sign-in/sign-in.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modules/users/pages/sign-in/sign-in.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/modules/users/pages/sign-in/sign-in.page.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modules/users/pages/sign-in/sign-in.page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/modules/users/pages/sign-in/sign-in.page.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modules/users/pages/sign-in/sign-in.page.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/modules/users/pages/sign-in/sign-in.page.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modules/users/pages/sign-in/sign-in.page.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/modules/users/services/db-user.service.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/modules/users/services/db-user.service.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/modules/users/services/user.interface.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/modules/users/users.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modules/users/users.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/modules/users/users.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modules/users/users.routes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/modules/users/widgets/maps/maps.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/modules/users/widgets/maps/maps.component.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/modules/users/widgets/maps/maps.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/modules/users/widgets/maps/maps.module.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/environments/environment.prod.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/environments/environment.prod.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/environments/environment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/environments/environment.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/modules/menu/pages/home/home.page.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modules/menu/pages/home/home.page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/modules/menu/pages/home/home.page.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modules/menu/pages/home/home.page.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/modules/services/pages/home/home.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modules/services/pages/home/home.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/modules/services/pages/home/home.page.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modules/services/pages/home/home.page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/modules/services/pages/home/home.page.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modules/services/pages/home/home.page.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/modules/services/pages/home/home.page.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modules/services/pages/home/home.page.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/modules/users/pages/get-profile/get-profile.page.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modules/users/pages/get-profile/get-profile.page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/modules/users/pages/get-profile/get-profile.page.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modules/users/pages/get-profile/get-profile.page.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/modules/users/services/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modules/users/services/auth.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/modules/users/widgets/change-password/change-password.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modules/users/widgets/change-password/change-password.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/modules/users/widgets/editar/editar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modules/users/widgets/editar/editar.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/modules/users/widgets/editar/editar.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modules/users/widgets/editar/editar.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/modules/users/widgets/editar/editar.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modules/users/widgets/editar/editar.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/pages/home/home.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/pages/home/home.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/pages/home/home.page.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/pages/home/home.page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/pages/home/home.page.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/pages/home/home.page.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/pages/pages.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/pages/pages.routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/theme/variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../src/theme/variables.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/../tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/Users/editor2/.android/avd/Meka.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/Users/editor2/.android/avd/Clean.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -186,16 +99,17 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectId" id="20rmjwuzBQrKoSP0IfYkYPUh4t4" />
+  <component name="ProjectId" id="22Y5fXImSwbpIqqpHLDJ6EAt83E" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
   </component>
   <component name="RunManager">
     <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
@@ -260,24 +174,12 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="c2ab2a3e-9792-4eec-b957-83700d756058" name="Default Changelist" comment="" />
-      <created>1636811220577</created>
+      <changelist id="f940a6f4-3cb3-4dfc-920e-068aef3db29b" name="Default Changelist" comment="" />
+      <created>1640001823160</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1636811220577</updated>
+      <updated>1640001823160</updated>
     </task>
     <servers />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

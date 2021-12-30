@@ -10,9 +10,9 @@ export class FirebaseService {
 
   constructor(private fs: Firestore) {}
 
-  createRoom = (id: string, item: any) => {
+  createRoom = (id: string, item: any, company: any) => {
     setDoc(doc(this.fs, `rooms/${id}`), item);
-    setDoc(doc(this.fs, `rooms/${id}/messages`), {});
+    setDoc(doc(this.fs, `rooms/${id}/${company}`), {});
   };
 
   acceptRoom(id: string, company: any) {

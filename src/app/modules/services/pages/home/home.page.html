@@ -1,14 +1,16 @@
-<ion-header [translucent]="true" class="ion-no-border">
-  <ion-toolbar mode="ios">
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
+<app-header title="Services"></app-header>
 <ion-content>
-  <div id="container">
-    <strong>Services</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-segment [value]="toogle" (ionChange)="segmentChanged($event)" mode="ios">
+    <ion-segment-button value="ACCEPTED">
+      <ion-label>ACCEPTED</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="OPEN">
+      <ion-label>OPEN</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  <app-services-list *ngIf="toogle === 'ACCEPT'; else open" [type]="toogle"></app-services-list>
 </ion-content>
+<ng-template #open>
+  <app-services-list [type]="toogle"></app-services-list>
+</ng-template>
+

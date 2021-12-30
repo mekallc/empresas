@@ -1,5 +1,14 @@
-<app-header title="Home"></app-header>
+<app-header title="Home" [services]=""></app-header>
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="bubbles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
   <app-services-open-widget></app-services-open-widget>
   <app-widget-banner></app-widget-banner>
+  <app-services-in-proccess-widget></app-services-in-proccess-widget>
 </ion-content>

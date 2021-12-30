@@ -4,10 +4,15 @@
       {{ title }}
     </ion-title>
     <ion-buttons [slot]="position" *ngIf="!link; else name">
+      <ion-button (click)="onSolicitud()">
+        <ion-badge id="notifications-badge" color="danger">99</ion-badge>
+        <ion-icon slot="icon-only" src="./assets/images/mechanics.svg">
+        </ion-icon>
+      </ion-button>
       <ion-button (click)="onNotification()">
         <ion-icon slot="icon-only"
           [name]="content > 0 ? 'notifications' : 'notifications-outline'"
-          [color]="content > 0 ? 'warning' : 'light'"></ion-icon>
+          [ngClass]="content > 0 ? 'full' : 'empty'"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -17,7 +22,7 @@
 <ng-template #name>
   <ion-buttons [slot]="position">
     <ion-button (click)="onMenu(link)">
-      <ion-icon slot="icon-only" name="chevron-back-outline" color="light"></ion-icon>
+      <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
     </ion-button>
   </ion-buttons>
 </ng-template>

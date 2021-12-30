@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MasterService } from '@core/services/master.service';
-import { LoadingController } from '@ionic/angular';
+import { StorageService } from '@core/services/storage.service';
+import { LoadingController, NavController } from '@ionic/angular';
+import { AuthService } from '@modules/users/services/auth.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -18,9 +20,13 @@ export class EditarComponent implements OnInit {
     { name: 'Portugues (Brasil)', iso: 'po' },
     { name: 'Español (Latinoamerica)', iso: 'es' },
   ];
+
   constructor(
+    private db: AuthService,
     private fb: FormBuilder,
     private ms: MasterService,
+    private nav: NavController,
+    private storage: StorageService,
     private loadCtrl: LoadingController,
   ) { }
 
@@ -30,29 +36,26 @@ export class EditarComponent implements OnInit {
   }
 
   onSubmit = async () => {
-    if(this.registerForm.invalid) { return; }
+    console.log(this.user);
+    console.log(this.registerForm.value);
+    // if(this.registerForm.invalid) { return; }
     const load = await this.loadCtrl.create({message: 'Loading...'});
     load.present();
-    const value = this.registerForm.value;
-    const data = {
-      email: value.email, country: value.country,
-      password: value.password, last_name: value.lastname,
-      fist_name: value.firstname, phone: `+${value.country + value.phone}`
-    };
-    // this.auth.signUp(data).then((res) => {
-    //   load.dismiss();
-    //   this.auth.signIn({ email: res.email, password: value.password });
-    // }).catch((err) => console.log(err));
+    this.db.updateUser(this.registerForm.value).subscribe(
+      async (res: any) => {
+        await load.dismiss();
+        this.nav.navigateRoot('');
+        await this.storage.setStorage('userCompany', res);
+      }
+    );
   };
-
 
   loadForm = () => {
     this.registerForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      firstname: ['', [Validators.required, Validators.minLength(4)]],
-      lastname: ['', [Validators.required, Validators.minLength(4)]],
-      phone: ['', Validators.required],
-      country: ['', Validators.required]
+      phone: [''],
+      country: [''],
+      fist_name: [''],
+      last_name: [''],
     });
   };
 }

@@ -1,7 +1,8 @@
+import { map, switchMap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { MasterService } from '@core/services/master.service';
 import { Geolocation } from '@capacitor/geolocation';
-import { from } from 'rxjs';
+import { from, zip } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,11 @@ export class DbCategoriesService {
     return this.ms.postMaster(`service/request/add/`, data);
   }
 
-  getServices() {
-    return this.ms.getMaster('service/request/list/');
+  getServices(id: number) {
+    return this.ms.getMaster(`service/request/list/${id}/`);
+  }
+
+  statusService(id: string, status: string, company: number) {
+    return this.ms.patchMaster(`service/company/${id}`, { status, company });
   }
 }

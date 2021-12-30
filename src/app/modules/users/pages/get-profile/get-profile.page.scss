@@ -16,4 +16,13 @@ ion-content {
       box-shadow: 2px 2px 3px rgba($color: #000000, $alpha: .30);
     }
   }
+  ion-segment {
+    --background: none;
+    ion-segment-button {
+      --color: var(--ion-meka-primary);
+      --background: rgb(255, 196, 0);
+      --color-checked: rgb(255, 196, 0);
+      --indicator-color: var(--ion-meka-primary);
+    }
+  }
 }

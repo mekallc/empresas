@@ -286,4 +286,10 @@
     color: #fff !important;
     --color: #fff !important;
   }
+  .empty {
+    color: #fff;
+  }
+  .alert-backgroundDimmiss {
+    --backdrop-opacity: var(--ion-meka-primary);
+  }
 }

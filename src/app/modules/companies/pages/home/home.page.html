@@ -1,33 +1,45 @@
 <app-header title="Compañias"></app-header>
 <ion-content>
-  <ng-template *ngIf="total > 0; else loading">
+  <div *ngIf="total > 0; else loading">
     <div id="company">
-      <ion-radio-group [value]="2" *ngFor="let item of lists$ | async">
-        <ion-item *ngFor="let item of [1,2]">
+      <ion-radio-group value="active">
+        <ion-item *ngFor="let item of lists$ | async">
           <ion-label>
-            <h2 class="mb-2">Taller el Pajarito</h2>
+            <h2 class="mb-2">{{ item.name }}</h2>
             <p>
               <ion-icon name="mail"></ion-icon>
-              kd4@gmail.com</p>
+              {{ item.email }}</p>
             <p>
               <ion-icon name="call"></ion-icon>
               +5541998819501</p>
             <p class="ion-text-wrap">
               <ion-icon name="location"></ion-icon>
-              Rua Fulano Tal 198, Capão Raso, Curitiba-Parana</p>
+              {{ item.address[0].street }} {{ item.address[0].num }}, {{ item.address[0].district }}.<br>
+              <span *ngIf="item.zip_code">{{item.zip_code}}, </span>
+              {{ item.address[0].state }} - {{ item.address[0].country }}.
+            </p>
+            <div class="ps-2">
+              <h2 class="mb-2">
+                <ion-icon name="list-outline" class="me-1"></ion-icon>
+                Categories
+              </h2>
+              <ul>
+                <li *ngFor="let type of item.type_expert">{{ type }}</li>
+              </ul>
+            </div>
           </ion-label>
-          <ion-radio slot="end" [value]="item"></ion-radio>
+          <ion-radio slot="end" color="warning" value="active"></ion-radio>
         </ion-item>
       </ion-radio-group>
     </div>
-  </ng-template>
+  </div>
   <ng-template #loading>
     <ion-label>
       <h2 class="white-text text-center mt-4">No record!.</h2>
     </ion-label>
   </ng-template>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab *ngIf="total === 0" vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color="warning" (click)="onRegister()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>

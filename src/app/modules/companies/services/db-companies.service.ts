@@ -1,24 +1,39 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
+import { ModalController, AlertController } from '@ionic/angular';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { MasterService } from '@core/services/master.service';
 import { StorageService } from '@core/services/storage.service';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { AuthService } from '@modules/users/services/auth.service';
+import { RegisterPage } from '@modules/companies/pages/register/register.page';
 
 const { headers } = environment.api;
 
 @Injectable({
   providedIn: 'root'
 })
-export class DbCompaniesService {
+export class DbCompaniesService implements OnDestroy{
 
   token: string;
+  public company: any = [];
   address$: BehaviorSubject<Address> = new BehaviorSubject(null);
+  private unsubscribe$ = new Subject<void>();
+
   constructor(
     private ms: MasterService,
     private storage: StorageService,
+    private userService: AuthService,
+    private modalCtrl: ModalController,
+    private alertCtrl: AlertController,
   ) {
+    // eslint-disable-next-line ngrx/no-store-subscription
     this.storage.getStorage('token').then((res) => this.token = res);
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
   getCompanies = () => this.ms.getMaster('user/company/');
@@ -32,6 +47,49 @@ export class DbCompaniesService {
 
   setAddress$  = (items: Address) => this.address$.next(items);
   getAddress$  = (): Observable<Address> => this.address$.asObservable();
+
+  getExistCompany = async () => {
+    const com = await this.storage.getStorage('company');
+    if (!com) {
+      this.ms.getMaster('user/company/').pipe(takeUntil(this.unsubscribe$), map(res => res[0]))
+      .subscribe(async (res: any) => {
+        if (res) { await this.storage.setStorage('company', res); }
+        else { this.modalData(); }
+      });
+    }
+  };
+
+  getServices(id: number) {
+    return this.ms.getMaster(`service/company/list/?company=${id}&ordering=-date_reg`)
+      .pipe(map((res: any) => res.search));
+  };
+
+  statusCompany(id: any, is_available=true) {
+    return this.ms.patchMaster(`user/company/${id}/`, { is_available });
+  }
+  private modalData = async () => {
+    const alert = await this.alertCtrl.create({
+      header: 'Info',
+      message: 'There are no registered companies, please create your company',
+      backdropDismiss: false,
+      cssClass: 'alert-backgroundDimmiss',
+      buttons: [
+        {
+          text: 'Cancel', role: 'cancel',
+          handler: (blah) => this.userService.signOut()
+        },
+        {
+        text: 'Create Company',
+        handler: async () => {
+          await (await this.modalCtrl.create(
+            { component: RegisterPage, componentProps: { modal: true } }
+          )).present();
+        }
+        }
+      ]
+    });
+    await alert.present();
+  };
 }
 
 export interface Address {

@@ -5,13 +5,15 @@
     </ion-label>
   </div>
   <ion-slides mode="ios" [options]="options">
-    <ion-slide *ngFor="let item of [1,2,3,4]">
+    <ion-slide *ngFor="let item of items$ | async" (click)="openModal(item)">
       <div class="service">
         <ion-label>
-          <p>Electrical Breakdown</p>
-          <h2>311000000{{item}}</h2>
-          <p>Toyota Corolla</p>
-          <h4>3Km</h4>
+          <p class="date">{{ item.date_reg | amTimeAgo  }}</p>
+          <p>{{ item.type_expert }}</p>
+          <h2>{{item.code}}</h2>
+          <p>{{ item.vehicle_model.brand}} </p>
+          <p>{{ item.vehicle_model.model }}</p>
+          <h4>{{ item.maps.distance.replace(',', '').replace('.', ',') }}</h4>
         </ion-label>
       </div>
     </ion-slide>

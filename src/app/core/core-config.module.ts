@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 import { Globalization } from '@ionic-native/globalization/ngx';
-
+import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 
 @NgModule({
   declarations: [],
@@ -12,7 +12,8 @@ import { Globalization } from '@ionic-native/globalization/ngx';
   ],
   providers: [
     NativeGeocoder,
-    Globalization
+    Globalization,
+    PhotoViewer
   ]
 })
 export class CoreConfigModule { }

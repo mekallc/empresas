@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 import { HeaderModule } from '@core/widgets/header/header.module';
 import { BannersWidgetModule } from '@core/widgets/banners/banners.module';
+import { RegisterCompanyPageModule } from '@modules/companies/pages/register/register.module';
 import { ServicesOpenWidgetModule } from '@modules/categories/widgets/services-open-widget/services-open-widget.module';
+import { ServicesInProccessWidgetModule } from '@modules/categories/widgets/services-in-proccess-widget/services-in-proccess-widget.module';
 
 
 @NgModule({
@@ -19,6 +21,8 @@ import { ServicesOpenWidgetModule } from '@modules/categories/widgets/services-o
     BannersWidgetModule,
     HomePageRoutingModule,
     ServicesOpenWidgetModule,
+    RegisterCompanyPageModule,
+    ServicesInProccessWidgetModule,
   ],
   declarations: [HomePage]
 })

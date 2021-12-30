@@ -10,12 +10,29 @@
     }
   }
   .service {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
     text-align: left !important;
     padding: .75rem;
     width: 100%;
-    background-color: #fefefe;
+    height: 180px;
+    background-color: #f0f0f0;
     border-radius: 15px;
     ion-label {
+      --color: var(--ion-meka-primary);
+      p, h2, h4 {
+        color: var(--ion-meka-primary);
+      }
+      .date {
+        font-weight: 600;
+        font-size: .7rem;
+        margin-bottom: .25rem;
+        text-align: right;
+        color: var(--ion-meka-primary);
+        border-bottom: .5px solid var(--ion-meka-primary);
+      }
       h2 {
         font-weight: 700;
       }

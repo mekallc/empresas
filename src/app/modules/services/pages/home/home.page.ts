@@ -7,6 +7,8 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
+  toogle = 'ACCEPTED';
   constructor() {}
 
+  segmentChanged = (ev: any) => this.toogle = ev.detail.value;
 }

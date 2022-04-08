@@ -1,8 +1,8 @@
 ion-content {
-  --background: var(--ion-meka-primary);;
+  --background: var(--ion-meka-primary);
   ion-segment {
     margin-top: .5rem;
-    --background: none;
+    --background: var(--ion-meka-primary);
     ion-segment-button {
       --color-checked: var(--ion-meka-primary);
       --indicator-color: rgb(255, 196, 0);

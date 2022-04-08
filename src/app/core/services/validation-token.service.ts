@@ -4,6 +4,10 @@ import * as moment from 'moment';
 
 import { MasterService } from '@core/services/master.service';
 import { StorageService } from '@core/services/storage.service';
+import { Store } from '@ngrx/store';
+import { AppState } from '@store/app.state';
+import { filter, map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -11,17 +15,20 @@ import { StorageService } from '@core/services/storage.service';
 export class ValidationTokenService {
 
   constructor(
+    private router: Router,
     private ms: MasterService,
+    private store: Store<AppState>,
     private storage: StorageService,
   ) { }
 
   validate = async () => {
     const refresh = await this.storage.getStorage('refreshCompany');
     const access = await this.storage.getStorage('tokenCompany');
-    const decode: any = jwt_decode(access);
-    const exp = moment().diff(moment.unix(decode.exp), 'hours');
-    if (exp <= -1) { return; }
-    this.refreshToken(refresh);
+    if (access) {
+      const decode: any = jwt_decode(access);
+      const exp = moment().diff(moment.unix(decode.exp), 'hours');
+      if (exp >= -1) { this.refreshToken(refresh); }
+    }
   };
 
   refreshToken = (refresh: string) => {
@@ -30,5 +37,16 @@ export class ValidationTokenService {
       await this.storage.setStorage('tokenCompany', res.access);
     });
   };
+
+  validateMember = () => {
+    this.store.select('stripe').pipe(filter(row => !row.loading), map((res: any) => res.item))
+    .subscribe((res: any) => {
+      if(res) {
+        if (res.triel_start > res.trial_end) {
+          this.router.navigate(['/pages', 'membership', 'home']);
+        }
+      }
+    })
+  }
 
 }

@@ -2,7 +2,7 @@
   <ion-toolbar mode="ios">
     <ion-title>Registro de Empresa</ion-title>
     <ion-buttons slot="end" *ngIf="modal">
-      <ion-button (click)="onClose()">
+      <ion-button (click)="onClose()" *ngIf="(count$ | async)">
         <ion-icon slot="icon-only" name="close" color="light"></ion-icon>
       </ion-button>
     </ion-buttons>

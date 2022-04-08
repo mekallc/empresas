@@ -1,11 +1,6 @@
 import { SolicitudModel } from './solicitud.interfaces';
 import { CompanyModel } from './company.interfaces';
-import { UserModel } from '@core/model/user.interfaces';
-
-export interface CompanyState {
-  loading: boolean;
-  company: ReadonlyArray<CompanyModel>;
-}
+import { UserModel } from '@core/model/user.interface';
 
 export interface SolicitudState {
   loading: boolean;

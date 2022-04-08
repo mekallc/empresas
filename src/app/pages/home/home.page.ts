@@ -1,38 +1,46 @@
-import { loadSolicitud } from './../../states/actions/solicitud.actions';
-import { CompanyModel } from '@core/model/company.interfaces';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { selectCompanyList } from './../../states/selector/company.selector';
-import { loadCompany, loadedCompany } from './../../states/actions/company.actions';
-import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { MasterService } from '@core/services/master.service';
-import { StorageService } from '@core/services/storage.service';
-import { DbCompaniesService } from '@modules/companies/services/db-companies.service';
+import { filter, map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
+import { AppState } from '@store/app.state';
+import { DbCompaniesService } from '@modules/companies/services/db-companies.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit, AfterViewInit {
 
+export class HomePage implements OnInit {
+
+  offline: boolean;
   company: any = [];
+  code$: Observable<number>;
   company$: Observable<any> = new Observable();
 
   constructor(
-    private store: Store,
-    private companies: DbCompaniesService,
+    private store: Store<AppState>,
+    private db: DbCompaniesService,
   ) {}
 
-  ngOnInit() {
-    this.store.dispatch(loadCompany());
+  ngOnInit(): void {
+    this.loadData();
   }
 
-  async ngAfterViewInit() {
-    this.companies.getExistCompany();
+  loadData = () => {
+    this.code$ = this.store.select('company')
+    .pipe( filter(row => !row.loading), map((res: any) => res.company.id) );
   }
+
+  loadServices = () => {
+    this.store.select('company').pipe().subscribe((res: any) => {
+      this.company = res.company.length;
+      if (this.company === 0) {
+        this.db.getExistCompany();
+      }
+    });
+  };
   doRefresh = (event: any) => {
-    this.store.dispatch(loadCompany());
     setTimeout(() => {
       console.log('Async operation has ended');
       event.target.complete();

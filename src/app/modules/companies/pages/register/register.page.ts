@@ -1,8 +1,11 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertController, LoadingController, ModalController, NavController, ToastController } from '@ionic/angular';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { StorageService } from '@core/services/storage.service';
+import { map } from 'rxjs/operators';
+import { AppState } from '@store/app.state';
+import { loadCompany } from '@store/actions';
 import { MapsWidgetComponent } from './../../widgets/maps/maps.component';
 import { DbCompaniesService } from './../../services/db-companies.service';
 
@@ -21,11 +24,13 @@ export class RegisterPage implements OnInit {
   countries$: Observable<any[]>;
   countries: any = [];
   yenny: any;
+  count$: Observable<number>;
+
   constructor(
     private fb: FormBuilder,
     private nav: NavController,
     private db: DbCompaniesService,
-    private storage: StorageService,
+    private store: Store<AppState>,
     private modalCtrl: ModalController,
     private alertCtrl: AlertController,
     private toastCtrl: ToastController,
@@ -34,34 +39,28 @@ export class RegisterPage implements OnInit {
 
   async ngOnInit() {
     this.loadForm();
-    const user = await this.storage.getStorage('user');
     this.experts$ = this.db.getCategories();
     this.countries$ = this.db.getCountries();
-    this.countries$.subscribe((res) => this.countries = res);
     this.setAddress();
+    this.countries$.subscribe((res) => this.countries = res);
+    this.count$ = this.store.select('company').pipe(map((res: any) => res.company.length));
   }
 
   onSubmit = async (id: number) => {
     const loading = await this.loadingCtrl.create({ message: 'Loading...' });
     await loading.present();
     const data= this.parseData(this.factoryForm.value);
-    const token = await this.storage.getStorage('token');
-    console.log(token);
-    console.log(data);
     this.yenny = data;
-    this.db.registerCompany(data, token).subscribe(
+    this.db.registerCompany(data).subscribe(
       async (res) => {
-        console.log('NEW COMPANY ', res);
+        this.store.dispatch(loadCompany());
         await loading.dismiss();
-        const toast = await this.toastCtrl.create({
-          message: 'Se creo tu Empresa.',
-          duration: 2000, mode: 'ios'
-        });
+        const toast = await this.toastCtrl.create({ message: 'Company created.', duration: 2000, mode: 'ios' });
         await toast.present();
         if (this.modal) {
           this.onClose();
         } else {
-          this.nav.navigateRoot('pages/companies');
+          this.nav.navigateRoot('');
         }
       },
       err => {

@@ -30,6 +30,10 @@ const routes: Routes = [
         path: 'companies',
         loadChildren: () => import('@modules/companies/pages/home/home.module').then( m => m.HomePageModule)
       },
+      {
+        path: 'membership',
+        loadChildren: () => import('@modules/membership/membership.module').then( m => m.MembershipModule)
+      },
       { path: '', redirectTo: '/pages/home', pathMatch: 'full' }
     ]
   },

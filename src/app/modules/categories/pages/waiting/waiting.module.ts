@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { WaitingComponent } from '@modules/categories/pages/waiting/waiting.component';
+import { OnOffWidgetModule } from '@core/widgets/on-off-widget/on-off-widget.module';
+import { RatingModalModule } from '@modules/rate/pages/rating-modal/rating-modal.module';
 
 const app: Routes = [
   { path: '', component: WaitingComponent }
@@ -15,7 +17,10 @@ const app: Routes = [
   imports: [
     IonicModule,
     CommonModule,
-    RouterModule.forChild(app)
+    RatingModalModule,
+    OnOffWidgetModule,
+    RouterModule.forChild(app),
   ]
 })
 export class WaitingModule { }
+

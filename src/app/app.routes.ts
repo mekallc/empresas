@@ -19,7 +19,18 @@ const routes: Routes = [
   },
   {
     path: 'chat',
+    canActivate: [AuthGuard],
     loadChildren: () => import('@modules/chat/chat.module').then( m => m.ChatModule)
+  },
+  {
+    path: 'register-company',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('@modules/companies/pages/register/register.module').then( m => m.RegisterCompanyPageModule)
+  },
+  {
+    path: 'membership',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('@modules/membership/membership.module').then( m => m.MembershipModule)
   },
 
 ];

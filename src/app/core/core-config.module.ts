@@ -11,9 +11,9 @@ import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 
   ],
   providers: [
-    NativeGeocoder,
+    PhotoViewer,
     Globalization,
-    PhotoViewer
+    NativeGeocoder,
   ]
 })
 export class CoreConfigModule { }

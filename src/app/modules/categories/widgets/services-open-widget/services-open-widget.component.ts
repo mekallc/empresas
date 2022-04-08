@@ -1,43 +1,43 @@
+import { filter } from 'rxjs/operators';
 /* eslint-disable ngrx/no-store-subscription */
-import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Component, AfterViewInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Observable } from 'rxjs';
-import { selectCompanyList } from 'src/app/states/selector/company.selector';
-import { WaitingComponent } from './../../pages/waiting/waiting.component';
+import { Store } from '@ngrx/store';
+
+import { AppState } from 'src/app/store/app.state';
 import { DbCompaniesService } from '@modules/companies/services/db-companies.service';
+import { WaitingComponent } from '@modules/categories/pages/waiting/waiting.component';
+import { map, tap } from 'rxjs/operators';
+import { ConnectService } from '@modules/chat/services/connect.service';
 
 @Component({
   selector: 'app-services-open-widget',
   templateUrl: './services-open-widget.component.html',
   styleUrls: ['./services-open-widget.component.scss'],
 })
-export class ServicesOpenWidgetComponent implements OnInit, AfterViewInit {
 
-  options = {
-    slidesPerView: 2.1,
-    spaceBetween: 10,
-    freeMode: true
-  };
+export class ServicesOpenWidgetComponent implements AfterViewInit {
 
-  items$: Observable<any[]>;
+  options = { freeMode: true, spaceBetween: 10, slidesPerView: 2.1,  };
+  items$: Observable<any>;
+  loading = true;
+  company: number;
 
   constructor(
-    private store: Store,
-    private db: DbCompaniesService,
+    private store: Store<AppState>,
     private modalCtrl: ModalController,
   ) { }
 
-  ngOnInit() {
-  }
-
   ngAfterViewInit(): void {
-    this.store.select(selectCompanyList).subscribe((res: any) => this.items$ = this.db.getServices(res.id));
+    this.items$ = this.store.select('solicitud').pipe(
+      filter((row) => !row.loading), tap((res: any) => this.company = res.id), map((res) => res.solicitud)
+    );
   }
 
-  openModal = async (res: any) => {
+  openModal = async (res: any, company: number) => {
     const modal = await this.modalCtrl.create({
-      component: WaitingComponent, componentProps: { res } });
+      component: WaitingComponent, componentProps: { res, company } });
     await modal.present();
   };
 }

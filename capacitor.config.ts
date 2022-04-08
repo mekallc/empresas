@@ -10,23 +10,23 @@ const config: CapacitorConfig = {
       presentationOptions: ['badge', 'sound', 'alert'],
     },
     SplashScreen: {
-      launchAutoHide: false,
+      launchAutoHide: true,
       splashImmersive: false,
       splashFullScreen: false,
-      launchShowDuration: 500,
-      backgroundColor: '#080f18',
-      androidScaleType: 'CENTER_INSIDE',
+      launchShowDuration: 1000,
+      backgroundColor: '#222428',
+      spinnerColor: "#E7B63A",
+      androidScaleType: 'CENTER_CROP',
       androidSplashResourceName: 'splash',
     },
   },
   android: {
     allowMixedContent: true
   },
-  // server: {
-  //   cleartext: true,
-  //   url: 'http://192.168.250.163:8100',
-  //   // url: 'http://192.168.1.8:8100'
-  // },
+  server: {
+    cleartext: true,
+    url: 'http://192.168.250.163:8100',
+  },
 };
 
 export default config;

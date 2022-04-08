@@ -55,7 +55,10 @@
               "camelCase"
             ]
           }
-        ]
+        ],
+        "@typescript-eslint/explicit-function-return-type": {
+          "allowExpressions": true
+        }
       },
       "plugins": [
         "ngrx"

@@ -1,11 +1,14 @@
 <ion-header class="ion-no-border">
   <ion-toolbar mode="ios">
-    <ion-title>
-      {{ title }}
-    </ion-title>
-    <ion-buttons [slot]="position" *ngIf="!link; else name">
-      <ion-button (click)="onSolicitud()">
-        <ion-badge id="notifications-badge" color="danger">99</ion-badge>
+    <ion-title> {{ title }} </ion-title>
+    <ion-buttons slot="start" *ngIf="link">
+      <ion-button (click)="onMenu(link)">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button class="me-1" (click)="onSolicitud()">
+        <ion-badge id="notifications-badge" color="danger"> {{ count$ | async }} </ion-badge>
         <ion-icon slot="icon-only" src="./assets/images/mechanics.svg">
         </ion-icon>
       </ion-button>
@@ -18,11 +21,3 @@
   </ion-toolbar>
 </ion-header>
 
-
-<ng-template #name>
-  <ion-buttons [slot]="position">
-    <ion-button (click)="onMenu(link)">
-      <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
-    </ion-button>
-  </ion-buttons>
-</ng-template>

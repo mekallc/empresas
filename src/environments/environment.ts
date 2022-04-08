@@ -6,23 +6,22 @@ export const environment = {
   production: false,
   firebase: {
     projectId: 'meka-app',
-    appId: '1:882572463657:web:96f5f79d52d0ef1ae69638',
-    storageBucket: 'meka-app.appspot.com',
-    locationId: 'southamerica-east1',
-    apiKey: 'AIzaSyAZQUQ65vngYX7_MWDqYDZ5utNn9yGkiWo',
-    authDomain: 'meka-app.firebaseapp.com',
-    messagingSenderId: '882572463657',
     measurementId: 'G-JG99NW4H1J',
+    locationId: 'southamerica-east1',
+    messagingSenderId: '882572463657',
+    storageBucket: 'meka-app.appspot.com',
+    authDomain: 'meka-app.firebaseapp.com',
+    apiKey: 'AIzaSyAZQUQ65vngYX7_MWDqYDZ5utNn9yGkiWo',
+    appId: '1:882572463657:web:96f5f79d52d0ef1ae69638',
+  },
+  api: {
+    version: 'v1',
+    url: 'https://api.meka.do/api',
+    headers: { Authorization: '', },
+    admin: {email: 'knaimero@gmail.com', password: 'meka123'}
   },
   maps: 'AIzaSyAylhtwYmgO_nuFZsQzvm_z6vAOvbEk80Q',
-  api: {
-    url: 'https://api.meka.do/api',
-    version: 'v1',
-    headers: {
-      Authorization: '',
-    },
-    admin: {email: 'knaimero@gmail.com', password: 'meka123'}
-  }
+  stripe: 'https://us-central1-meka-app.cloudfunctions.net/stripe/api/v1'
 };
 
 /*

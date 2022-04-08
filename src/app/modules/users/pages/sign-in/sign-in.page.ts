@@ -1,30 +1,35 @@
-import { Router } from '@angular/router';
+import { filter, map } from 'rxjs/operators';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { StorageService } from 'src/app/core/services/storage.service';
-import { IonSlides, NavController, AlertController, LoadingController } from '@ionic/angular';
-import { AuthService } from 'src/app/modules/users/services/auth.service';
+
+import { IonSlides, NavController, LoadingController } from '@ionic/angular';
+import { Store } from '@ngrx/store';
+
+import * as actions from '@store/actions';
+import { AppState } from '@store/app.state';
+import { StorageService } from '@core/services/storage.service';
+import { AuthService } from '@modules/users/services/auth.service';
 
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.page.html',
   styleUrls: ['./sign-in.page.scss'],
 })
-export class SignInPage implements OnInit, AfterViewInit {
 
+export class SignInPage implements OnInit, AfterViewInit {
   @ViewChild('slides') slides: IonSlides;
   options = { initialSlide: 0, };
-
   loginForm: FormGroup;
   forgotPasswordForm: FormGroup;
 
   constructor(
+    private router: Router,
     private fb: FormBuilder,
     private db: AuthService,
     private nav: NavController,
-    private router: Router,
+    private store: Store<AppState>,
     private storage: StorageService,
-    private alertCtrl: AlertController,
     private loadCtrl: LoadingController,
   ) { }
 
@@ -40,26 +45,18 @@ export class SignInPage implements OnInit, AfterViewInit {
     if (this.loginForm.invalid) { return; }
     const load = await this.loadCtrl.create({message: 'Loading...'});
     await load.present();
-    this.db.signIn(this.loginForm.value).subscribe( async (res: any) => {
-      await load.dismiss();
-      return this.nav.navigateRoot('/pages/home');
-    }, async (err: any) => {
-      await load.dismiss();
-      console.log(err);
-      await this.db.alertErr(err.error);
+    this.db.signIn(this.loginForm.value)
+    .subscribe(async(res: any) => {
+      await this.setDataReduxStorage(res);
+      this.getState();
+      this.loadCtrl.dismiss();
+      this.router.navigate(['/pages', 'home'])
+    }, err => {
+      this.loadCtrl.dismiss();
+      this.db.alertErr(err.error);
+      this.loginForm.reset();
     });
-    // console.log(this.loginForm.value);
-    // this.auth.signIn(this.loginForm.value)
-    // .then(async (res) => {
-    //   await load.dismiss();
-    // })
-    // .catch(async (err) => {
-    //   await load.dismiss();
-    //   console.log(err);
-    // });
   };
-
-  onForgotPassword = () => console.log('óoSubmit');
 
   loadForm = () => {
     this.loginForm = this.fb.group({
@@ -77,5 +74,15 @@ export class SignInPage implements OnInit, AfterViewInit {
     this.slides.lockSwipes(true);
   };
 
+  setDataReduxStorage =  async (user: any) => {
+    await this.storage.setStorage('userCompany', user);
+    await this.storage.setStorage('tokenCompany', user.access);
+  }
+
+  onForgotPassword = () => console.log('onSubmit');
   onRegister = () => this.nav.navigateForward('/user/signUp');
+
+  private getState = () => {
+    this.store.dispatch(actions.loadCompany());
+  };
 }

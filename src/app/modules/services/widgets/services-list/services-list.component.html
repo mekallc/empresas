@@ -1,36 +1,39 @@
+<!-- <ion-progress-bar type="indeterminate" color="light" *ngIf="load"></ion-progress-bar> -->
+<!-- <div class="loading" *ngIf="load">
+  <ion-spinner name="dots"></ion-spinner>
+</div> -->
 <ion-list lines="none">
-  <ion-list>
-    <ion-item-sliding *ngFor="let item of items$ | async">
-      <ion-item button (click)="openService(item)" [detail]="false">
-        <ion-label>
-          <h2>{{ item.code }}</h2>
-          <p>
-            {{ item.vehicle_model.brand }} {{ item.vehicle_model.model }}
-          </p>
-          <p>{{ item.maps.distance.replace(',', '').replace('.', ',')  }}</p>
-          <h4></h4>
-        </ion-label>
-        <ion-avatar slot="end" class="expert">
-          <img [src]="item.expert_icon" />
-        </ion-avatar>
-      </ion-item>
-      <ion-item-options side="start">
-        <ion-item-option *ngIf="type !== 'OPEN'" (click)="finishService(item)" color="success">
-          <ion-icon slot="icon-only" name="checkmark"></ion-icon>
-        </ion-item-option>
-        <ion-item-option *ngIf="type === 'OPEN'" (click)="acceptedService(item)" color="primary">
-          <ion-icon slot="icon-only" name="construct"></ion-icon>
-        </ion-item-option>
-        <ion-item-option color="danger" (click)="cancelService(item)">
-          <ion-icon slot="icon-only" name="trash"></ion-icon>
-        </ion-item-option>
-      </ion-item-options>
+  <ion-item-sliding *ngFor="let item of items$ | async; trackBy:identify">
+    <ion-item button (click)="openService(item)" [detail]="false">
+      <ion-label>
+        <p style="font-size: .7rem;">{{ item.date_upd | date: 'dd MMM, HH:mm' }}</p>
+        <h2>{{ item.code }}</h2>
+        <p>
+          {{ item.vehicle_model?.brand }} {{ item.vehicle_model?.model }}
+        </p>
+        <p>{{ item.maps.distance?.replace(',', '')?.replace('.', ',')  }}</p>
+        <h4></h4>
+      </ion-label>
+      <ion-avatar slot="end" class="expert">
+        <img [src]="item.icon_expert" />
+      </ion-avatar>
+    </ion-item>
+    <ion-item-options side="start" *ngIf="!offline">
+      <ion-item-option *ngIf="type !== 'IN_PROCESS'" (click)="finishService(item)" color="success">
+        <ion-icon slot="icon-only" name="checkmark"></ion-icon>
+      </ion-item-option>
+      <ion-item-option *ngIf="type === 'IN_PROCESS'" (click)="acceptedService(item)" color="primary">
+        <ion-icon slot="icon-only" name="construct"></ion-icon>
+      </ion-item-option>
+      <ion-item-option color="danger" (click)="cancelService(item)">
+        <ion-icon slot="icon-only" name="trash"></ion-icon>
+      </ion-item-option>
+    </ion-item-options>
 
-      <ion-item-options side="end">
-        <ion-item-option (click)="chat(item.code)" color="tertiary">
-          <ion-icon slot="icon-only" name="chatbubbles"></ion-icon>
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-  </ion-list>
+    <ion-item-options side="end" *ngIf="!offline">
+      <ion-item-option *ngIf="type === 'ACCEPTED'" (click)="chat(item.code)" color="tertiary">
+        <ion-icon slot="icon-only" name="chatbubbles"></ion-icon>
+      </ion-item-option>
+    </ion-item-options>
+  </ion-item-sliding>
 </ion-list>

@@ -1,3 +1,11 @@
+ion-header {
+  ion-toolbar {
+    ion-title{
+      color:rgb(40, 40, 40);
+    }
+  }
+}
+
 ion-content {
   --background: #feffef;
   .imessage {
@@ -105,14 +113,15 @@ ion-header {
 
 ion-footer {
   ion-toolbar {
-    --background: #f4f5eb;
+    --background: #eeefde;
     ion-input {
       border: .5px;
       height: 40px;
       border-radius: 10px;
-      --background: #dfdfdf;
+      --background: #d5d5d5;
       --padding-start: 10px;
       --padding-end: 10px;
+      --color: rgb(81, 79, 79);
     }
     ion-button {
       --padding-start	: 8px;

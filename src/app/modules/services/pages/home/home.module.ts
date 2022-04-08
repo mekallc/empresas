@@ -6,7 +6,8 @@ import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 import { HeaderModule } from '@core/widgets/header/header.module';
-import { ServicesListComponent } from '@modules/services/widgets/services-list/services-list.component';
+import { ServicesListModule } from '@modules/services/widgets/services-list/services-list.module';
+import { OnOffWidgetModule } from '@core/widgets/on-off-widget/on-off-widget.module';
 
 
 @NgModule({
@@ -15,8 +16,10 @@ import { ServicesListComponent } from '@modules/services/widgets/services-list/s
     FormsModule,
     IonicModule,
     HeaderModule,
+    OnOffWidgetModule,
+    ServicesListModule,
     HomePageRoutingModule
   ],
-  declarations: [HomePage, ServicesListComponent]
+  declarations: [HomePage]
 })
 export class HomePageModule {}

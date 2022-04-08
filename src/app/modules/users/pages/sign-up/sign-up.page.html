@@ -1,26 +1,27 @@
 <ion-header class="ion-no-border">
   <ion-toolbar mode="ios">
     <ion-buttons slot="start">
-      <ion-button (click)="onBack()" expand="block" fill="clear" shape="round">
-        <ion-icon slot="icon-only" name="arrow-back" color="light"></ion-icon>
+      <ion-button (click)="onBack()" expand="block" shape="round">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
+    <ion-title>{{ "SIGN.SIGNUP_TITLE" | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
   <div class="container mt-4">
     <div class="head">
       <ion-label>
-        <h1>{{ "SIGN.SIGNUP_TITLE" | translate }}</h1>
+        <h1></h1>
         <p>{{ "SIGN.SIGNUP_INFO" | translate }}</p>
       </ion-label>
     </div>
     <form [formGroup]="registerForm">
       <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-5">
           <div class="avatar">
             <ion-avatar (click) = "takePicture()">
-              <img [src]="avatar || './assets/images/user-camera.png'">
+              <img [src]="avatar || './assets/images/avatar.png'">
             </ion-avatar>
           </div>
           <ion-item lines="none">
@@ -46,6 +47,15 @@
             <ion-input required type="email" inputmode="email" formControlName="email"></ion-input>
           </ion-item>
           <ion-item lines="none" *ngIf="registerForm.get('email').invalid && registerForm.get('email').touched">
+            <ion-text color="danger" class="form-error">
+              <small>{{ "SIGN.ERROR.EMAIL" | translate }}</small>
+            </ion-text>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-label position="stacked">{{ "ID/Cedula/Identification" | translate }} <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input required type="text" inputmode="email" formControlName="identity"></ion-input>
+          </ion-item>
+          <ion-item lines="none" *ngIf="registerForm.get('identity').invalid && registerForm.get('identity').touched">
             <ion-text color="danger" class="form-error">
               <small>{{ "SIGN.ERROR.EMAIL" | translate }}</small>
             </ion-text>

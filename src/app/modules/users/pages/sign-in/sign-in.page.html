@@ -12,28 +12,28 @@
             <form [formGroup]="loginForm">
               <ion-item>
                 <ion-label position="stacked">{{ "SIGN.EMAIL" | translate }} <ion-text color="danger">*</ion-text></ion-label>
-                <ion-input required type="email" formControlName="email"></ion-input>
+                <ion-input required type="email" formControlName="email" placeholder="cliente2222@gmail.com"></ion-input>
               </ion-item>
-              <ion-item *ngIf="loginForm.get('email').invalid && loginForm.get('email').touched">
+              <!-- <ion-item *ngIf="loginForm.get('email').invalid && loginForm.get('email').touched">
                 <ion-text color="danger" class="form-error">
                   <small>{{ "SIGN.ERROR.EMAIL" | translate }}</small>
                 </ion-text>
-              </ion-item>
+              </ion-item> -->
               <ion-item>
                 <ion-label position="stacked">{{ "SIGN.PASSWORD" | translate }} <ion-text color="danger">*</ion-text></ion-label>
-                <ion-input required type="password" formControlName="password" (keyup.enter)="onSubmit()"></ion-input>
+                <ion-input required type="password" formControlName="password" (keyup.enter)="onSubmit()" placeholder="123456"></ion-input>
               </ion-item>
-              <ion-item *ngIf="loginForm.get('password').invalid && loginForm.get('password').touched">
+              <!-- <ion-item *ngIf="loginForm.get('password').invalid && loginForm.get('password').touched">
                 <ion-text color="danger" class="form-error">
                   <small>{{ "SIGN.ERROR.PASSWORD" | translate }}</small>
                 </ion-text>
-              </ion-item>
+              </ion-item> -->
               <div class="px-3">
                 <ion-button (click)="onSubmit()" [disabled]="loginForm.invalid"  expand="block" color="warning" mode="ios">
                   {{ "SIGN.ACCESS" | translate }}
                 </ion-button>
               </div>
-              <ion-button (click)="goToSlides(1)" expand="block" fill="clear" shape="round" color="light" class="mb-3" mode="ios">
+              <ion-button (click)="goToSlides(1)" expand="block" fill="clear" shape="round" fill="clear" class="mb-3 unlink" mode="ios">
                 {{ "SIGN.FORGET_YOUR_PASSWORD" | translate }}
               </ion-button>
             </form>
@@ -55,17 +55,17 @@
                 <ion-label position="stacked">{{ "SIGN.EMAIL" | translate }} <ion-text color="danger">*</ion-text></ion-label>
                 <ion-input required type="email"></ion-input>
               </ion-item>
-              <ion-item *ngIf="forgotPasswordForm.get('email').invalid && loginForm.get('email').touched">
+              <!-- <ion-item *ngIf="forgotPasswordForm.get('email').invalid && loginForm.get('email').touched">
                 <ion-text color="danger" class="form-error">
                   <small>{{ "SIGN.ERROR.EMAIL" | translate }}</small>
                 </ion-text>
-              </ion-item>
+              </ion-item> -->
               <div class="px-3">
                 <ion-button (click)="onForgotPassword()" [disabled]="forgotPasswordForm.invalid" expand="block" color="warning" shape="round" mode="ios">
                   {{ "SIGN.SEND" | translate }}
                 </ion-button>
               </div>
-              <ion-button (click)="goToSlides(0)" color="light" expand="block" fill="clear" shape="round" class="mb-3" mode="ios">
+              <ion-button (click)="goToSlides(0)" expand="block" fill="clear" shape="round" class="mb-3 unlink" mode="ios">
                 {{ "SIGN.BACK_TO_LOGIN" | translate }}
               </ion-button>
             </form>
@@ -77,7 +77,7 @@
 </ion-content>
 <ion-footer class="ion-no-border">
   <ion-toolbar>
-    <ion-button (click)="onRegister()" expand="block" fill="clear" shape="round" mode="ios" color="light">
+    <ion-button (click)="onRegister()" expand="block" fill="clear" shape="round" mode="ios" class="unlink">
       <span style="font-size: .85rem">{{ "SIGN.YOU_DONT_HAVE_AN_ACCOUNT" | translate}}</span>
     </ion-button>
   </ion-toolbar>

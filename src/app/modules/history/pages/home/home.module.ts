@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
+import { HeaderModule } from '@core/widgets/header/header.module';
+import { ServicesListHistoryModule } from '@modules/history/widgets/services-list/services-list.module';
 
 
 @NgModule({
@@ -12,6 +14,8 @@ import { HomePageRoutingModule } from './home-routing.module';
     CommonModule,
     FormsModule,
     IonicModule,
+    HeaderModule,
+    ServicesListHistoryModule,
     HomePageRoutingModule
   ],
   declarations: [HomePage]

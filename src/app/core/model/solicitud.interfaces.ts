@@ -5,6 +5,7 @@ export interface SolicitudModel {
   code:              string;
   description:       string;
   type_expert:       string;
+  icon_expert?:       string;
   vehicle_model:     VehicleModel;
   vehicle_condition: string;
   status:            string;

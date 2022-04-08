@@ -1,3 +1,4 @@
+import { MomentModule } from 'ngx-moment';
 import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -12,6 +13,7 @@ import { ServicesInProccessWidgetComponent } from './services-in-proccess-widget
   imports: [
     IonicModule,
     CommonModule,
+    MomentModule,
   ]
 })
 export class ServicesInProccessWidgetModule { }

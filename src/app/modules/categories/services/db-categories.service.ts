@@ -26,7 +26,10 @@ export class DbCategoriesService {
     return this.ms.getMaster(`service/request/list/${id}/`);
   }
 
-  statusService(id: string, status: string, company: number) {
+  statusService(id: any, status: string, company: number) {
     return this.ms.patchMaster(`service/company/${id}`, { status, company });
+  }
+  finishService(service: number, company: number, data: any) {
+    return this.ms.patchMaster(`service/company/${service}?company=${company}`, data);
   }
 }

@@ -1,19 +1,27 @@
-<div class="widget-slides">
+<div class="widget-slides" >
   <div class="title">
     <ion-label>
       <h2>Open Services</h2>
     </ion-label>
   </div>
-  <ion-slides mode="ios" [options]="options">
-    <ion-slide *ngFor="let item of items$ | async" (click)="openModal(item)">
+  <ion-slides mode="ios" [options]="options" *ngIf="(items$ | async) as items"
+  >
+    <ion-slide *ngFor="let item of items" (click)="openModal(item, company)">
       <div class="service">
         <ion-label>
           <p class="date">{{ item.date_reg | amTimeAgo  }}</p>
           <p>{{ item.type_expert }}</p>
           <h2>{{item.code}}</h2>
-          <p>{{ item.vehicle_model.brand}} </p>
-          <p>{{ item.vehicle_model.model }}</p>
-          <h4>{{ item.maps.distance.replace(',', '').replace('.', ',') }}</h4>
+          <p>{{ item.vehicle_model?.brand}} </p>
+          <p>{{ item.vehicle_model?.model }}</p>
+          <h4>{{ item.maps.distance?.replace(',', '')?.replace('.', ',') }}</h4>
+        </ion-label>
+      </div>
+    </ion-slide>
+    <ion-slide *ngIf="items.length === 0">
+      <div class="service">
+        <ion-label>
+          <h4 class="text-center">Sin Ofertas de Trabajo</h4>
         </ion-label>
       </div>
     </ion-slide>

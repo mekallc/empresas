@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Storage, ref, deleteObject, uploadBytes, uploadString,
-  uploadBytesResumable, percentage, getDownloadURL } from '@angular/fire/storage';
+import { Storage, ref, uploadBytesResumable, percentage, getDownloadURL } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 
   @Injectable({

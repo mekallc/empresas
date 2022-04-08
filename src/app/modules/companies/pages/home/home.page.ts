@@ -1,46 +1,38 @@
 import { ModalController } from '@ionic/angular';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
-import { DbCompaniesService } from './../../services/db-companies.service';
+import { tap, takeUntil, map, delay } from 'rxjs/operators';
+import { AppState } from '@store/app.state';
 import { RegisterPage } from './../register/register.page';
-import { tap, takeUntil } from 'rxjs/operators';
-import { StorageService } from '@core/services/storage.service';
+import { DbCompaniesService } from './../../services/db-companies.service';
 
+import { StorageService } from '@core/services/storage.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit, OnDestroy {
+export class HomePage implements AfterViewInit {
 
-  active = true;
-  content = ['Perfil', 'Compañias', 'Mensajes'];
-  subContent = ['Central de Ayuda', 'Política de Privacidad', 'Terminos de Uso', 'Sobre Meka', 'Evalua App'];
-  total = 0;
   lists$: Observable<any>;
-  private unsubscribe$ = new Subject<void>();
+  load: boolean = true;
 
   constructor(
     private db: DbCompaniesService,
     private storage: StorageService,
     private modalCtrl: ModalController,
+    private store: Store<AppState>
   ) {}
 
-  ngOnInit(): void {
-    this.lists$ = this.db.getCompanies().pipe(
-      tap((res: any) => this.total = res.length)
+  ngAfterViewInit() {
+    this.lists$ = this.store.select('company').pipe(
+      delay(1500),
+      tap((res: any) => this.load = res.loading ),
+      map((res: any) => res.company),
     );
-    this.lists$.pipe(takeUntil(this.unsubscribe$)).subscribe(
-      async (res: any) => {
-        await this.storage.setStorage('company', res);
-      }
-    );
-  }
-
-  ngOnDestroy(): void {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
+    this.lists$.subscribe((res) => console.log(res));
   }
 
   onRegister = async () => {

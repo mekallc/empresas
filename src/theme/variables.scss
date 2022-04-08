@@ -292,4 +292,19 @@
   .alert-backgroundDimmiss {
     --backdrop-opacity: var(--ion-meka-primary);
   }
+  .input-stripe, .InputElement  {
+    border: 1px solid #efefef;
+    background: #fafafa;
+    margin-bottom: 1rem;
+    padding: .5rem;
+    color: #fafafa;
+    font-size: 50px;
+    font-weight: 500;
+    border-radius: 5px;
+    width:-webkit-fill-available;
+  }
+
+  .card-stripe {
+    font-size: 1.2rem;
+  }
 }

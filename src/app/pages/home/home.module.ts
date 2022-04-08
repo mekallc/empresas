@@ -10,6 +10,7 @@ import { BannersWidgetModule } from '@core/widgets/banners/banners.module';
 import { RegisterCompanyPageModule } from '@modules/companies/pages/register/register.module';
 import { ServicesOpenWidgetModule } from '@modules/categories/widgets/services-open-widget/services-open-widget.module';
 import { ServicesInProccessWidgetModule } from '@modules/categories/widgets/services-in-proccess-widget/services-in-proccess-widget.module';
+import { OnOffWidgetModule } from '@core/widgets/on-off-widget/on-off-widget.module';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { ServicesInProccessWidgetModule } from '@modules/categories/widgets/serv
     IonicModule,
     HeaderModule,
     CommonModule,
+    OnOffWidgetModule,
     BannersWidgetModule,
     HomePageRoutingModule,
     ServicesOpenWidgetModule,

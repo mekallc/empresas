@@ -7,6 +7,8 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
+  toogle = 'CLOSED';
   constructor() {}
 
+  segmentChanged = (ev: any) => this.toogle = ev.detail.value;
 }

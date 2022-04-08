@@ -1,16 +1,22 @@
 <ion-list>
   <ion-list-header>
     <ion-label>
-      <h2>In Proccess Services</h2>
+      <h2>Accepted Services</h2>
     </ion-label>
   </ion-list-header>
-  <ion-item button *ngFor="let item of [1,2,3,4]">
-    <ion-label>
-      <p>Electrical Breakdown</p>
-      <h2>311000000{{item}}</h2>
-      <p>Toyota Corolla</p>
-      <h4>Yenny Delgado</h4>
+  <ion-item button *ngFor="let item of items$ | async">
+    <ion-label (click)="openModal(item)">
+      <p class="date">{{ item.date_reg | amTimeAgo  }}</p>
+      <p>{{ item.type_expert }}</p>
+      <h2>{{item.code}}</h2>
+      <p>{{ item.brand }} {{ item.model }}</p>
+      <h4>{{ item.description }}</h4>
     </ion-label>
-    <ion-icon slot="end" color="warning" name="chatbubbles"></ion-icon>
+    <ion-button slot="end" (click)="openChat(item.code)" fill="clear" [disabled]="offline">
+      <ion-label slot="start" color="warning">
+        {{ item.unread > 0 ? item.unread : '' }}
+        <ion-icon name="chatbubbles" color="warning"></ion-icon>
+      </ion-label>
+    </ion-button>
   </ion-item>
 </ion-list>

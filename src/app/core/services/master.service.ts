@@ -9,9 +9,7 @@ const { url, version } = environment.api;
   providedIn: 'root'
 })
 export class MasterService {
-  constructor(
-    private http: HttpClient
-  ) {}
+  constructor(  private http: HttpClient  ) {}
 
   getMaster(collection: string): Observable<any> {
     return this.http.get<any>(`${url}/${version}/${collection}`);
@@ -24,4 +22,8 @@ export class MasterService {
   patchMaster(collection: any, data: any) {
     return this.http.patch(`${url}/${version}/${collection}`, data);
   }
+
+  changeToken = (token_user: string) =>
+    this.http.patch(`${url}/${version}/notification/token/`, { token_user });
+
 }

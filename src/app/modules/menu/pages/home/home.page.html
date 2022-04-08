@@ -7,14 +7,15 @@
           <div class="col-4">
             <div class="avatar">
               <ion-avatar>
-                <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+                <img src="./assets/images/avatar.png">
               </ion-avatar>
             </div>
           </div>
           <div class="col-8">
             <ion-label class="getDatos">
-              <h2 class="name">{{ user?.fist_name }} {{ user?.last_name }}</h2>
-              <h3 class="jobs">724 trabajos</h3>
+              <h2 class="name">{{ company.name }}</h2>
+              <h3 class="jobs">{{ user?.fist_name }} {{ user?.last_name }}</h3>
+              <h3 class="jobs" *ngIf="count$">{{ count$ | async }} trabajos</h3>
               <h4 class="rating">Nivel Bronze</h4>
             </ion-label>
           </div>
@@ -24,9 +25,9 @@
     <ion-list class="link">
       <ion-item>
         <ion-label>
-          <h1 class="mb-0">{{ active ? 'On-line' : 'Off-line' }}</h1>
+          <h1 class="mb-0">{{ active ? 'Off-line' : 'On-line' }}</h1>
         </ion-label>
-        <ion-toggle mode="ios" color="danger" (ionChange)="onOffLine(54, active)"></ion-toggle>
+        <ion-toggle mode="ios" color="danger" [(ngModel)]="active" (ngModelChange)="onOffLine()"></ion-toggle>
       </ion-item>
       <ion-item button *ngFor="let item of content" [routerLink]="item.url" routerLinkActive="router-link-active" >
         <ion-label>{{ item.name }}</ion-label>
@@ -36,7 +37,7 @@
       </ion-item>
     </ion-list>
     <ion-list class="sublink">
-      <ion-item button *ngFor="let item of subContent" (click)="item.modal ? onPost(item.name): onLink(item.url)">
+      <ion-item button *ngFor="let item of subContent" (click)="item.modal ? onPost(item.name): ''">
         <ion-label>{{ item.name }}</ion-label>
       </ion-item>
       <ion-item lines="none">

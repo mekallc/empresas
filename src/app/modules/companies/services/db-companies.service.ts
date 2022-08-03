@@ -37,11 +37,12 @@ export class DbCompaniesService implements OnDestroy{
   }
 
   getCompanies = () => this.ms.getMaster('user/company/');
+  getType = () => this.ms.getMaster('master/types-companies/');
   getCountries = () => this.ms.getMaster(`master/countries/`);
   getCountriesName = (name: string) => this.ms.getMaster(`master/countries/?name=${name}`);
   getCategories = () => this.ms.getMaster('master/expert/');
   registerCompany = (data: any) => this.ms.postMaster('user/company/add/', data);
-  setAddress$  = (items: Address) => this.address$.next(items);
+  setAddress$  = (items: any) => this.address$.next(items);
   getAddress$  = (): Observable<Address> => this.address$.asObservable();
 
   getExistCompany = async () => {
@@ -55,11 +56,14 @@ export class DbCompaniesService implements OnDestroy{
     }
   };
 
+  updateCompany = (id, data: any): Observable<Object> =>
+    this.ms.patchMaster(`user/company/${id}/`, data);
+
   getServices(id: number, status='ACCEPTED') {
     return this.ms.getMaster(`service/company/list/?company=${id}&ordering=-date_reg&search=${status}`)
       .pipe(
         map((res: any) => res.search));
-  };
+  }
 
   statusCompany(id: any, is_available=true) {
     return this.ms.patchMaster(`user/company/${id}/`, { is_available });

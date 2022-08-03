@@ -22,19 +22,29 @@ export class ValidationTokenService {
   ) { }
 
   validate = async () => {
-    const refresh = await this.storage.getStorage('refreshCompany');
-    const access = await this.storage.getStorage('tokenCompany');
-    if (access) {
+    const user = await this.storage.getStorage('userCompany');
+    if (user) {
+      const access = await this.storage.getStorage('tokenCompany');
       const decode: any = jwt_decode(access);
       const exp = moment().diff(moment.unix(decode.exp), 'hours');
-      if (exp >= -1) { this.refreshToken(refresh); }
+      console.log(exp > 1);
+      if (exp >= -1) {
+        this.refreshToken(user.refresh);
+      }
     }
   };
 
   refreshToken = (refresh: string) => {
-    this.ms.postMaster('setting/token/refresh/', { refresh }).subscribe(async (res: any) => {
+    this.ms.postMaster('setting/token/refresh/', { refresh })
+    .subscribe(async (res: any) => {
       await this.storage.removeStorage('tokenCompany');
       await this.storage.setStorage('tokenCompany', res.access);
+    },
+    async (error: any) => {
+      console.log(error);
+      await this.storage.removeStorage('tokenCompany');
+      await this.storage.removeStorage('userCompany');
+      this.router.navigate(['user', 'signIn']);
     });
   };
 

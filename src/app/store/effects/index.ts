@@ -6,9 +6,10 @@ import { AcceptedEffects } from './accepted.effects';
 import { HistoryEffects } from './history.effects';
 import { CompanyEffects } from './company.effects';
 import { InProcessEffects } from './in-process.effects';
+import { PositionEffects } from './position.effects';
 
 
 export const EffectsArray: any[] = [
   CompanyEffects, InProcessEffects, HistoryEffects, AcceptedEffects,
-  ClosedEffects, StripeEffects, CustomerEffects, ExpertEffects
+  ClosedEffects, StripeEffects, CustomerEffects, ExpertEffects, PositionEffects
 ];

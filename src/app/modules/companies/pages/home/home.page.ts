@@ -1,4 +1,4 @@
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
@@ -23,7 +23,8 @@ export class HomePage implements AfterViewInit {
     private db: DbCompaniesService,
     private storage: StorageService,
     private modalCtrl: ModalController,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private navCtrl: NavController,
   ) {}
 
   ngAfterViewInit() {
@@ -35,11 +36,11 @@ export class HomePage implements AfterViewInit {
     this.lists$.subscribe((res) => console.log(res));
   }
 
-  onRegister = async () => {
-    const modal = await this.modalCtrl.create({
-      component: RegisterPage,
-      componentProps: { modal: true }
-    });
-    await modal.present();
+  onEdit =  (item?: any) => {
+    this.navCtrl.navigateRoot('/pages/companies/add');
+    //   component: RegisterPage,
+    //   componentProps: { modal: false, item: item ? item: null }
+    // });
+    // await modal.present();
   };
 }

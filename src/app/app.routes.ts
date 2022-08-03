@@ -28,6 +28,11 @@ const routes: Routes = [
     loadChildren: () => import('@modules/companies/pages/register/register.module').then( m => m.RegisterCompanyPageModule)
   },
   {
+    path: 'register-mapa',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('@modules/companies/widgets/maps/maps.module').then( m => m.MapsUserWidgetModule)
+  },
+  {
     path: 'membership',
     canActivate: [AuthGuard],
     loadChildren: () => import('@modules/membership/membership.module').then( m => m.MembershipModule)

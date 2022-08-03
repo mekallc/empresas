@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ɵConsole } from '@angular/core';
-import { LoadingController, AlertController } from '@ionic/angular';
+import { LoadingController, AlertController, ModalController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { filter, map, take, tap } from 'rxjs/operators';
 import { StripeCardNumberComponent, StripeService } from "ngx-stripe";
@@ -57,6 +57,7 @@ export class HomePage implements OnInit {
     private db: MemberService,
     private store: Store<AppState>,
     private router: Router,
+    private modalCtrl: ModalController,
     private alertCtrl: AlertController,
     private stripeService: StripeService,
     private loadingCtrl: LoadingController,
@@ -87,6 +88,8 @@ export class HomePage implements OnInit {
     });
 
   }
+
+  onClose = () => this.modalCtrl.dismiss();
   private send = (item: any) => {
     const data = {
       payment_method: {

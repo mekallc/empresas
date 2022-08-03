@@ -2,7 +2,7 @@
 	"appId": "com.mekadevelopments.lt",
 	"appName": "Meka LT",
 	"webDir": "www",
-	"bundledWebRuntime": false,
+	"bundledWebRuntime": true,
 	"plugins": {
 		"PushNotifications": {
 			"presentationOptions": [
@@ -27,6 +27,6 @@
 	},
 	"server": {
 		"cleartext": true,
-		"url": "http://192.168.250.163:8100"
+		"url": "http://192.168.250.114:8100"
 	}
 }

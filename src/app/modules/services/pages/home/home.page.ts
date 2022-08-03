@@ -10,7 +10,7 @@ import { AppState } from '@store/app.state';
 })
 export class HomePage implements OnInit {
 
-  toogle = 'ACCEPTED';
+  toogle = 'IN_PROCESS';
   constructor(
     private store: Store<AppState>
   ) {}

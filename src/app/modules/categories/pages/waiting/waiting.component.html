@@ -1,13 +1,13 @@
-<ion-content [fullscreen]="true">
-  <ion-header class="ion-no-border">
-    <ion-toolbar mode="ios">
-      <ion-buttons slot="end">
-        <ion-button (click)="onClose()">
-          <ion-icon slot="icon-only" name="close"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="end">
+      <ion-button (click)="onClose()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
   <app-on-off-widget></app-on-off-widget>
   <div id="dados" class="container">
     <ion-list lines="none">
@@ -16,7 +16,7 @@
           <h1 class="code">
             {{ res.code }}
           </h1>
-          <h2>Status: <b>{{ res.status | titlecase }}</b></h2>
+          <h2><strong>{{ res.status | translate |titlecase }}</strong></h2>
         </ion-label>
       </ion-item>
       <ion-item>
@@ -32,8 +32,14 @@
       <ion-item>
         <ion-icon slot="start" name="reader-outline"></ion-icon>
         <ion-label>
-          <p class="categoria"> {{ res.type_expert }}</p>
+          <p class="categoria"> {{ res.type_expert | translate }}</p>
           <p class="description ion-text-wrap"> {{ res.description }}</p>
+        </ion-label>
+      </ion-item>
+      <ion-item color="warning" button *ngIf="res.status === 'ACCEPTED'" details>
+        <ion-icon slot="start" name="chatbubbles-outline"></ion-icon>
+        <ion-label>
+          {{ 'BUTTON.CHAT' | translate }}
         </ion-label>
       </ion-item>
     </ion-list>
@@ -45,7 +51,7 @@
     </ion-item>
     <ion-slides class="my-3" mode="ios" scrollbar="ios" [options]="slideOpts" [ngStyle]="{width: openImage ? '100px' : '0px'}">
       <ion-slide *ngFor="let item of res.pictures">
-        <img [src]="item.picture" class="img-fluid" (click)="openPicture(item.picture)">
+        <img [src]="item.picture" class="img-fluid" (click)="openPicture(item.picture)" alt="Images">
       </ion-slide>
     </ion-slides>
   </div>
@@ -55,9 +61,28 @@
 </ion-content>
 <ion-footer class="ion-no-border">
   <ion-toolbar>
-    <ion-button *ngIf="res.status === 'ACCEPTED'" mode="ios" expand="full" (click)="onRoom(res.code)" fill="clear" [disabled]="offline" class="button-chat"> Chat </ion-button>
-    <ion-button *ngIf="res.status === 'IN_PROCESS'" mode="ios" expand="full" color="tertiary" (click)="onAceptService()" [disabled]="offline">Acept Service </ion-button>
-    <ion-button *ngIf="res.status === 'ACCEPTED'" mode="ios" expand="full" color="tertiary" (click)="onFinishedService()" [disabled]="offline">Finished Service </ion-button>
-    <ion-button *ngIf="res.status === 'ACCEPTED'" mode="ios" expand="full" color="danger" (click)="onCancelService(company)" [disabled]="offline">Cancel Service </ion-button>
+    <div class="row g-1">
+      <div class="col-6">
+        <ion-button
+          expand="block" mode="ios" color="danger" fill="outline"
+          *ngIf="res.status === 'ACCEPTED' || res.status === 'IN_PROCESS'"
+          (click)="onCancelService(company)" [disabled]="offline">
+          {{ 'BUTTON.CANCELLED' | translate }}
+        </ion-button>
+      </div>
+      <div class="col-6">
+        <ion-button expand="block" mode="ios" color="primary"
+          *ngIf="res.status === 'IN_PROCESS'"
+          (click)="onAceptService()" [disabled]="offline">
+          {{ 'BUTTON.ACCEPTED' | translate }}
+        </ion-button>
+        <ion-button
+          mode="ios" expand="block" color="success"
+          *ngIf="res.status === 'ACCEPTED'"
+          (click)="onFinishedService()" [disabled]="offline">
+          {{ 'BUTTON.CLOSED' | translate }}
+        </ion-button>
+      </div>
+    </div>
   </ion-toolbar>
 </ion-footer>

@@ -10,7 +10,10 @@ import { Store } from '@ngrx/store';
 import * as actions from '@store/actions';
 import { DbCompaniesService } from '@modules/companies/services/db-companies.service';
 import { AppState } from 'src/app/store/app.state';
-import { filter, map } from 'rxjs/operators';
+import { filter, map, tap } from 'rxjs/operators';
+import * as MemberPage from '@modules/membership/pages/home/home.page';
+
+
 
 @Component({
   selector: 'app-home',
@@ -24,12 +27,10 @@ export class HomePage implements OnInit, AfterViewInit {
   appInfo: any;
   content = [
     { name: 'Perfil', url: '/user/profile' },
-    { name: 'Compañias', url: '/pages/companies' },
-    { name: 'Mensajes', url: '/chat/soporte' },
-    { name: 'Membresia', url: '/pages/membership/home' },
+    { name: 'Compañia', url: '/pages/companies' },
+    { name: 'Mensajes', url: '/chat/soporte' }
   ];
   subContent = [
-    { name: 'Help Center', modal: true },
     { name: 'Privacy Policy', modal: true },
     { name: 'Term of Use', modal: true },
     { name: 'About Meka', modal: true }
@@ -39,6 +40,9 @@ export class HomePage implements OnInit, AfterViewInit {
   active: boolean;
   user: any;
   company: any = [];
+
+  company$: Observable<any>;
+  ts: string = '';
 
   constructor(
     private auth: AuthService,
@@ -50,6 +54,7 @@ export class HomePage implements OnInit, AfterViewInit {
   ) {}
 
   async ngOnInit() {
+    this.getUser();
     const user = await this.storage.getStorage('userCompany');
     this.user = user;
     this.store.dispatch(actions.customerLoad({ email: user.email }))
@@ -57,10 +62,29 @@ export class HomePage implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.store.select('company').subscribe(({ company }) => this.company = company);
     this.statusOnOff();
     this.countClosedJobs();
   }
+
+  getUser = () => {
+    this.company$ = this.store.select('company')
+    .pipe(
+      filter(row => !row.loading),
+      tap((res: any) => this.getName(res.company.name)),
+      map(res => res.company)
+    );
+    this.company$.subscribe(res => console.log('COMPANY ', res));
+  };
+
+  goToMembresia = async(): Promise<void> => {
+    const modal = await this.modalCtrl.create({
+      component: MemberPage.HomePage,
+      mode: 'ios',
+      initialBreakpoint: 1,
+      breakpoints: [0, .5, .85, 1]
+    });
+    modal.present();
+  };
 
   countClosedJobs = () => {
     this.count$ = this.store.select('closed')
@@ -98,6 +122,19 @@ export class HomePage implements OnInit, AfterViewInit {
     console.log(this.active);
     await this.storage.setStorage('status', this.active);
     this.store.dispatch(actions.loadStatus({ id: this.active }));
+  };
+
+  getName = (name: string) => {
+    let value = '';
+    const split = name.split(' ');
+    const a = split[0].slice(0,1);
+    if (!split[1]) {
+      value = a;
+    } else {
+      const b = split[1].slice(0,1);
+      value = a+b;
+    }
+    this.ts = value;
   };
 
   onLink = (url: string) => this.nav.navigateRoot(url);

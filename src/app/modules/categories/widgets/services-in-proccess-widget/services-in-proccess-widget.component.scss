@@ -12,10 +12,15 @@ ion-list {
   background: none;
   ion-item {
     --background: none;
+    position: relative;
     ion-label {
       --color: #fff;
       p, h2, h4 {
         color: #fff;
+      }
+      .number {
+        position: absolute;
+        right: 0;
       }
       h2 {
         font-weight: 700;
@@ -34,5 +39,16 @@ ion-list {
   justify-content: center;
   ion-spinner {
     --color: #fafafa;
+  }
+}
+
+
+.not-found {
+  ion-icon {
+    color: rgb(242, 193, 16) !important;
+  }
+  ion-label {
+    font-weight: 700;
+    --color: rgb(242, 193, 16) !important;
   }
 }

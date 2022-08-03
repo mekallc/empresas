@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
@@ -16,6 +17,7 @@ import { MomentModule } from 'ngx-moment';
     CommonModule,
     HeaderModule,
     MomentModule,
+    TranslateModule,
     RoomsChatPageRoutingModule
   ],
   exports: [RoomsChatPage],

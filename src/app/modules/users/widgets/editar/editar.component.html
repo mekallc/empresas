@@ -2,27 +2,28 @@
   <form [formGroup]="registerForm">
     <div class="row justify-content-center">
       <div class="col-md-6">
-        <ion-item lines="none">
+        <ion-item>
           <ion-label position="stacked">{{ "SIGN.FIRSTNAME" | translate }} <ion-text color="danger">*</ion-text></ion-label>
           <ion-input required formControlName="fist_name" type="text" [value]="user.fist_name"></ion-input>
         </ion-item>
-        <ion-item lines="none">
+        <ion-item>
           <ion-label position="stacked">{{ "SIGN.LASTNAME" | translate }} <ion-text color="danger">*</ion-text></ion-label>
           <ion-input required formControlName="last_name" type="text"  [value]="user.last_name"></ion-input>
         </ion-item>
-        <ion-item class="country" lines="none">
-          <ion-label position="stacked">Country <ion-text color="danger">*</ion-text></ion-label>
-          <ion-select placeholder="Country" interface="action-sheet" formControlName="country">
+        <ion-item class="country">
+          <ion-label position="stacked">{{ 'SIGN.COUNTRY' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+          <ion-select [placeholder]="'GLOBAL.SELECT' | translate" interface="action-sheet" formControlName="country">
             <ion-select-option *ngFor="let item of countries$ | async" [value]="user.country">
               (+{{ item.phone_code }}) {{ item.name  }}</ion-select-option>
           </ion-select>
         </ion-item>
-        <ion-item class="phone" lines="none">
+        <ion-item class="phone">
           <ion-label position="stacked">{{ "SIGN.PHONE" | translate }} <ion-text color="danger">*</ion-text></ion-label>
           <ion-input required formControlName="phone" type="phone" inputmode="numeric" placeholder="0000-0000" [value]="user.phone"></ion-input>
         </ion-item>
-        <ion-item class="idima" lines="none">
-          <ion-select placeholder="Idioma" interface="action-sheet" formControlName="country">
+        <ion-item class="idioma">
+          <ion-label position="stacked">{{ 'SIGN.LANGUAGE' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+          <ion-select placeholder="Idioma" interface="action-sheet" formControlName="language">
             <ion-select-option *ngFor="let item of idioma" [value]="item.iso">
               {{ item.name  }}</ion-select-option>
           </ion-select>
@@ -31,7 +32,7 @@
       <div class="col-8 mt-3">
         <ion-button (click)="onSubmit()" expand="block" color="warning"
         shape="round" mode="ios">
-        Enviar
+        {{ 'BUTTON.SEND'| translate }}
       </ion-button>
       </div>
     </div>

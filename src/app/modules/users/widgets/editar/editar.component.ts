@@ -54,6 +54,7 @@ export class EditarComponent implements OnInit {
     this.registerForm = this.fb.group({
       phone: [''],
       country: [''],
+      language: [''],
       fist_name: [''],
       last_name: [''],
     });

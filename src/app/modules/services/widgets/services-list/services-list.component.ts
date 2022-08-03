@@ -2,12 +2,11 @@ import { Component, Input, AfterViewInit, OnChanges, SimpleChanges, ChangeDetect
 import { Router } from '@angular/router';
 import { AlertController, LoadingController, ModalController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
-import { Observable, timer, zip, combineLatest, concat } from 'rxjs';
+import { Observable, timer } from 'rxjs';
 import { filter, map, tap } from 'rxjs/operators';
 import { AppState } from 'src/app/store/app.state';
 import { MasterService } from '@core/services/master.service';
-import { SolicitudModel } from '@core/model/solicitud.interfaces';
-import { loadCompany, updateSolicitud, loadSolicitud } from 'src/app/store/actions';
+import { updateSolicitud, loadSolicitud } from 'src/app/store/actions';
 import { WaitingComponent } from '@modules/categories/pages/waiting/waiting.component';
 import { DbCategoriesService } from '@modules/categories/services/db-categories.service';
 
@@ -15,6 +14,7 @@ import { DbCategoriesService } from '@modules/categories/services/db-categories.
   selector: 'app-services-list',
   templateUrl: './services-list.component.html',
   styleUrls: ['./services-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class ServicesListComponent implements AfterViewInit, OnChanges {
@@ -31,7 +31,6 @@ export class ServicesListComponent implements AfterViewInit, OnChanges {
 
   constructor(
     private router: Router,
-    private ms: MasterService,
     private store: Store<AppState>,
     private db: DbCategoriesService,
     private alertCtrl: AlertController,
@@ -48,15 +47,22 @@ export class ServicesListComponent implements AfterViewInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.type);
-    console.log(changes.type.currentValue);
-    this.getServices(this.type);
+    this.getServices(changes.type.currentValue);
   }
 
   getServices = (type: any) => {
-    if (type === 'INPROCESS') { this.getIcone(this.getInProcess()); }
-    else if(type === 'CLOSED') { this.getIcone(this.getClosed()); }
-    else { this.getIcone(this.getAccepted()); }
+    switch(type){
+      case 'IN_PROCESS':
+        this.getInProcess();
+        break;
+      case 'CLOSED':
+        this.getClosed();
+        break;
+      case 'ACCEPTED':
+        this.getAccepted();
+        break;
+      default:
+    }
   }
 
   openService = async (res: any) => {
@@ -122,31 +128,57 @@ export class ServicesListComponent implements AfterViewInit, OnChanges {
 
   identify = (index, item) => item.code;
 
-  private getIcone = (items$) => {
-    this.ms.getMaster('master/expert/').subscribe((expert: any) => {
-      this.items$ = items$.pipe(map((services: any) => this.dataIcone(services, expert)))
-    });
-  }
-  private getAccepted = () => this.store.select('accepted')
-  .pipe(
-    filter((row) => !row.loading),
-    tap((res: any) => { this.company = res.id; this.load = res.loading }),
-    map((res) => res.accepted)
-  );
+  getAccepted = () => {
+    this.items$ = this.store.select('accepted')
+    .pipe(
+      filter((row) => !row.loading),
+      tap((res: any) => { this.company = res.id; this.load = res.loading }),
+      map((res) => res.accepted),
+      map((res: any) => {
+        const data: any = [];
+        res.forEach((el: any) => {
+          el.icon = this.getIcone(el.type_expert);
+          data.push(el);
+        });
+        return data;
+      })
+    );
+  };
 
-  private getInProcess = () => this.store.select('solicitud')
-  .pipe(
-    filter((row) => !row.loading),
-    tap((res: any) => { this.company = res.id; this.load = res.loading  }),
-    map((res) => res.solicitud)
-  );
 
-  private getClosed = () => this.store.select('closed')
-  .pipe(
-    filter((row) => !row.loading),
-    tap((res: any) => { this.company = res.id; this.load = res.loading }),
-    map((res) => res.items)
-  );
+  getInProcess = () => {
+    this.items$ = this.store.select('solicitud')
+    .pipe(
+      filter((row) => !row.loading),
+      tap((res: any) => { this.company = res.id; this.load = res.loading  }),
+      map((res) => res.solicitud),
+      map((res: any) => {
+        const data: any = [];
+        res.forEach((el: any) => {
+          el.icon = this.getIcone(el.type_expert);
+          data.push(el);
+        });
+        return data;
+      })
+    );
+  };
+
+  getClosed = () => {
+    this.items$ = this.store.select('closed')
+    .pipe(
+      filter((row) => !row.loading),
+      tap((res: any) => { this.company = res.id; this.load = res.loading }),
+      map((res) => res.items),
+      map((res: any) => {
+        const data: any = [];
+        res.forEach((el: any) => {
+          el.icon = this.getIcone(el.type_expert);
+          data.push(el);
+        });
+        return data;
+      })
+    );
+  };
 
   private dataIcone = (service: any, expert: any) => {
     if(expert) {
@@ -158,6 +190,21 @@ export class ServicesListComponent implements AfterViewInit, OnChanges {
       });
       return data;
     }
+  }
+
+  getIcone = (item: any) =>{
+    let data: string;
+    const expert$ = this.store.select('expert')
+    .pipe(
+      filter((row) => !row.loading),
+      map((res) => res.items),
+      map((res: any) => {
+        const fill: any = res.filter(data => data.name === item)[0].picture.toString();
+        return fill;
+      })
+    );
+    expert$.subscribe(res => data = res);
+    return data;
   }
 
   private findIcon = (type: string) => {

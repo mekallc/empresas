@@ -10,6 +10,7 @@ import * as actions from '@store/actions';
 import { AppState } from '@store/app.state';
 import { StorageService } from '@core/services/storage.service';
 import { AuthService } from '@modules/users/services/auth.service';
+import { IntegratedService } from '@core/services/integrated.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -31,6 +32,7 @@ export class SignInPage implements OnInit, AfterViewInit {
     private store: Store<AppState>,
     private storage: StorageService,
     private loadCtrl: LoadingController,
+    private ibntegrate: IntegratedService,
   ) { }
 
   ngOnInit() {
@@ -48,9 +50,9 @@ export class SignInPage implements OnInit, AfterViewInit {
     this.db.signIn(this.loginForm.value)
     .subscribe(async(res: any) => {
       await this.setDataReduxStorage(res);
-      this.getState();
       this.loadCtrl.dismiss();
       this.router.navigate(['/pages', 'home'])
+      this.ibntegrate.initState();
     }, err => {
       this.loadCtrl.dismiss();
       this.db.alertErr(err.error);
@@ -60,8 +62,8 @@ export class SignInPage implements OnInit, AfterViewInit {
 
   loadForm = () => {
     this.loginForm = this.fb.group({
-      email: ['cliente2222@gmail.com', [Validators.required, Validators.email]],
-      password: ['123456', [Validators.required, Validators.minLength(4)]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(4)]],
     });
     this.forgotPasswordForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],

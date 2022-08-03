@@ -1,6 +1,6 @@
 
 ion-content {
-  --background: #ecfeff;
+  --background: #e0e0e0;
   ion-header {
     ion-toolbar {
       --background: var(--ion-meka-primary);
@@ -8,6 +8,14 @@ ion-content {
       ion-avatar {
         width:  70px;
         height: 70px;
+      }
+      ion-buttons {
+        ion-button {
+          ion-icon {
+            color: #fff;
+            --color: #fff;
+          }
+        }
       }
     }
     .toolbar-rounded {

@@ -1,3 +1,4 @@
+import { ModalController } from '@ionic/angular';
 import { Component, AfterViewInit, ChangeDetectionStrategy } from '@angular/core';
 
 import { Store } from '@ngrx/store';
@@ -8,6 +9,8 @@ import { AppState } from '@store/app.state';
 import { StorageService } from '@core/services/storage.service';
 import { MemberService } from '@modules/membership/services/membership.service';
 import { ValidationTokenService } from '@core/services/validation-token.service';
+import { RegisterPage } from '@modules/companies/pages/register/register.page';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-pages',
@@ -23,7 +26,8 @@ export class PagesPage implements AfterViewInit {
     private store: Store<AppState>,
     private storage: StorageService,
     private memberService: MemberService,
-    private validateService: ValidationTokenService
+    private validateService: ValidationTokenService,
+    private modalCtrl: ModalController,
   ) { }
 
   async ngOnInit() {
@@ -33,27 +37,22 @@ export class PagesPage implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.loadServices();
+    // this.loadServices();
   }
 
   loadServices = () => {
-    this.store.select('company')
+    const company$: Observable<unknown> = this.store.select('company')
     .pipe(filter((row: any) => !row.loading), map((res: any) => res.company))
-    .subscribe((res: any) => {
-      const id = res.id;
-      console.log(id);
-      this.store.dispatch(actions.expertLoad());
-      this.store.dispatch(actions.closedLoad({ id} ));
-      this.store.dispatch(actions.loadHistory({ id }));
-      this.store.dispatch(actions.loadAccepted({ id }));
-      this.store.dispatch(actions.loadSolicitud({ id }));
+    company$.subscribe((res: any) => {
+      if(!res) { this.goToCompany(); }
     });
   };
 
   private stripeCustomer = async () => {
     const user = await this.storage.getStorage('userCompany');
     if (user) {
-      const data = { name: `${user.fist_name} ${user.last_name}`, email: user.email };
+      const data = {
+        name: `${user.fist_name} ${user.last_name}`, email: user.email };
       this.store.dispatch(actions.customerLoad({ email: user.email}));
       this.constructCustomerStripe(data);
     }
@@ -100,4 +99,9 @@ export class PagesPage implements AfterViewInit {
         this.storage.setStorage('oConfig', res).then(() => {});
       });
   }
+
+  private goToCompany = async () => {
+    const modal = await this.modalCtrl.create({ component: RegisterPage });
+    modal.present();
+  };
 }

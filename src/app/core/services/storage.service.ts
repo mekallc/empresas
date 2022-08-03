@@ -12,8 +12,8 @@ export class StorageService {
   };
 
   getStorage = async (key: string) => {
-    const { value } = await Storage.get({ key });
-    return JSON.parse(value);
+    const item: any = await Storage.get({ key });
+    return JSON.parse(item.value);
   };
 
   removeStorage = async (key: string) => {

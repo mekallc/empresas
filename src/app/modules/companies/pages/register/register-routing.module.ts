@@ -6,7 +6,11 @@ const routes: Routes = [
   {
     path: '',
     component: RegisterPage
-  }
+  },
+  {
+    path: 'mapa',
+    loadChildren: () => import('../../widgets/maps/maps.module').then( m => m.MapsUserWidgetModule)
+  },
 ];
 
 @NgModule({

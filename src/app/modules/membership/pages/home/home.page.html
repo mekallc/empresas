@@ -1,4 +1,13 @@
-<app-header title="Membresia"></app-header>
+<ion-header class="ion-no-border" [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="onClose()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Membresia</ion-title>
+  </ion-toolbar>
+</ion-header>
 <ion-content *ngIf="(entry$ | async) as item">
   <div class="container">
     <ion-list class="mt-4" lines="none">
@@ -38,7 +47,7 @@
         </div>
       </ngx-stripe-card-group>
       <div class="text-center py-3">
-        <ion-button expand="block" color="primary" shape="round" (click)="onPay()">
+        <ion-button expand="block" color="primary" (click)="onPay()">
           Pagar
         </ion-button>
       </div>

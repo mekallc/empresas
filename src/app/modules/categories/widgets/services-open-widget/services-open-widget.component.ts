@@ -37,7 +37,12 @@ export class ServicesOpenWidgetComponent implements AfterViewInit {
 
   openModal = async (res: any, company: number) => {
     const modal = await this.modalCtrl.create({
-      component: WaitingComponent, componentProps: { res, company } });
+      component: WaitingComponent,
+      componentProps: { res, company },
+      mode: 'ios',
+      initialBreakpoint: 1,
+      breakpoints: [0, 1]
+    });
     await modal.present();
   };
 }

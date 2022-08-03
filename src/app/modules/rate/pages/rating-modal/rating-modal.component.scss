@@ -17,6 +17,8 @@ ion-content, ion-list, ion-toolbar {
 }
 
 ion-textarea {
+  --border-radius: 5px;
+  --padding-start: 10px;
   --padding-bottom: 45px;
   --background: rgba(0,0,0,.15);;
 }

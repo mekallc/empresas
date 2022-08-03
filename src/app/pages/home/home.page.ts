@@ -29,7 +29,7 @@ export class HomePage implements OnInit {
 
   loadData = () => {
     this.code$ = this.store.select('company')
-    .pipe( filter(row => !row.loading), map((res: any) => res.company.id) );
+    .pipe( filter(row => !row.loading), map((res: any) => res.company?.id) );
   }
 
   loadServices = () => {

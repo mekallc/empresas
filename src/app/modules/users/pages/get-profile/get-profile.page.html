@@ -37,10 +37,10 @@
   <div class="container mt-4">
     <ion-segment value="editar" (ionChange)="segmentChanged($event)" mode="ios">
       <ion-segment-button value="editar">
-        <ion-label>Editar</ion-label>
+        <ion-label>{{ 'EDIT' | translate }}</ion-label>
       </ion-segment-button>
       <ion-segment-button value="password">
-        <ion-label>Cambiar Password</ion-label>
+        <ion-label>{{ 'CHANGE_PASSWORD' | translate }}</ion-label>
       </ion-segment-button>
     </ion-segment>
     <app-editar [user]="user" *ngIf="segment ==='editar'; else change"></app-editar>

@@ -6,7 +6,11 @@ const routes: Routes = [
   {
     path: '',
     component: HomePage,
-  }
+  },
+  {
+    path: 'add',
+    loadChildren: () => import('../register/register.module').then( m => m.RegisterCompanyPageModule)
+  },
 ];
 
 @NgModule({

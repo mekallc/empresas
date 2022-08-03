@@ -19,6 +19,8 @@ import { fab } from '@fortawesome/free-brands-svg-icons'
 import ApiInterceptor from '@core/services/http.interceptor';
 import { NotificationsComponent } from '@core/widgets/notifications/notifications.component';
 import { SolicitudModalComponent } from '@core/widgets/solicitud-modal/solicitud-modal.component';
+import { AgmCoreModule } from '@agm/core';
+import { TranslateModule } from '@ngx-translate/core';
 // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
 export function playerFactory() { return player; }
 
@@ -30,9 +32,10 @@ export function playerFactory() { return player; }
     IonicModule,
     CommonModule,
     MomentModule,
+    TranslateModule,
     FontAwesomeModule,
+    AgmCoreModule.forRoot({ apiKey: environment.maps, libraries: ['places'] }),
     NgxStripeModule.forRoot('pk_test_51JwvutBciJuLJJgxehspy5c9SROduRtoSFUOFSQ2PfpRBsD1QaXju0czIxUcPwv0NEOoDChSD4mLhrB79H0RSbrH00ozf6cT3F'),
-
     provideStorage(() => getStorage()),
     provideFirestore(() => {
       const firestore = getFirestore();

@@ -13,6 +13,7 @@ export interface AppState {
   history: reducers.HistoryState;
   accepted: reducers.AcceptedState;
   customer: reducers.CustomerState;
+  position: reducers.PositionState;
   solicitud: reducers.SolicitudState;
 }
 
@@ -26,5 +27,6 @@ export const ROOT_REDUCERS: ActionReducerMap<AppState> = {
   history: reducers.historyReducer,
   accepted: reducers.acceptedReducer,
   customer: reducers.customerReducer,
+  position: reducers.positionReducer,
   solicitud: reducers.solicitudReducer,
 };

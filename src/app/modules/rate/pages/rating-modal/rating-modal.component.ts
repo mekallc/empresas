@@ -6,6 +6,8 @@ import { timer } from 'rxjs';
 import { AppState } from '@store/app.state';
 import { Store } from '@ngrx/store';
 import * as actions from '@store/actions';
+import { IntegratedService } from '@core/services/integrated.service';
+import { filter, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-rating-modal',
@@ -19,11 +21,12 @@ export class RatingModalComponent implements OnInit {
   num = 4;
   data: any = [];
   score: number;
-  comment: string = 'Write your comment...';
+  comment: string;
 
   constructor(
     private router: Router,
     private store: Store<AppState>,
+    private integrated: IntegratedService,
     private modal: ModalController,
     private db: DbCategoriesService,
   ) { }
@@ -38,14 +41,14 @@ export class RatingModalComponent implements OnInit {
   onSubmit = () => {
     const data = {
       status: 'CLOSED',
-      store: this.score,
+      score: 4,
       review: this.comment,
     };
-    this.store.select('company').subscribe((res: any) => {
+    this.store.select('company').subscribe((res: any): void => {
       if (!res.loading) {
-        this.db.finishService(this.id, res.company.id, data).subscribe((res: any) => {
-          console.log('COMPANY ', res);
-          this.getState(res.id);
+        this.db.finishService(this.id, res.company.id, data)
+        .subscribe((res: any): void => {
+          this.getData();
           this.modal.dismiss();
           this.router.navigate(['pages', 'home']);
         });
@@ -53,14 +56,22 @@ export class RatingModalComponent implements OnInit {
     })
   }
 
-  getStar = (ev: number) => this.score;
+  getStar = (ev: number): number => this.score = ev;
 
-  onClose = () => this.modal.dismiss();
 
-  private getState = (id: any) => {
-    this.store.dispatch(actions.closedLoad({ id }));
-    this.store.dispatch(actions.loadHistory({ id }));
-    this.store.dispatch(actions.loadAccepted({ id }));
-    this.store.dispatch(actions.loadSolicitud({ id }));
+  onClose = (): Promise<boolean> => this.modal.dismiss();
+
+  private getData = () => {
+    this.store.select('company')
+    .pipe(filter(row => !row.loading), map(res => res.company))
+    .subscribe((res: any) => {
+      if(res) {
+        const id = res.id;
+        this.store.dispatch(actions.closedLoad({ id} ));
+        this.store.dispatch(actions.loadSolicitud({ id }));
+        this.store.dispatch(actions.loadAccepted({ id }));
+        this.store.dispatch(actions.loadHistory({ id }));
+      }
+    })
   }
 }

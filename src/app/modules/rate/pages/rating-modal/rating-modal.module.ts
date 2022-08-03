@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
+import { TranslateModule } from '@ngx-translate/core';
 import { RatingModalComponent } from './rating-modal.component';
 import { StarsWidgetModule } from '@modules/categories/widgets/stars/stars.module';
 
@@ -13,6 +14,7 @@ import { StarsWidgetModule } from '@modules/categories/widgets/stars/stars.modul
     IonicModule,
     FormsModule,
     CommonModule,
+    TranslateModule,
     StarsWidgetModule
   ]
 })

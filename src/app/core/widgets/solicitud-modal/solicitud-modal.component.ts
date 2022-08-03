@@ -2,7 +2,7 @@ import { Component, AfterViewInit, ChangeDetectionStrategy, OnInit } from '@angu
 import { ModalController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { Observable, zip } from 'rxjs';
-import { filter, map, switchMap } from 'rxjs/operators';
+import { filter, map, switchMap, tap } from 'rxjs/operators';
 import { AppState } from '@store/app.state';
 import { MasterService } from '@core/services/master.service';
 import { SolicitudModel } from '@core/model/solicitud.interfaces';
@@ -17,7 +17,8 @@ import { WaitingComponent } from '@modules/categories/pages/waiting/waiting.comp
 })
 export class SolicitudModalComponent implements OnInit {
 
-  entry$: Observable<any[]>;
+  opened$: Observable<any[]>;
+  accepted$: Observable<any[]>;
   items: any = [];
 
   constructor(
@@ -27,7 +28,7 @@ export class SolicitudModalComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.loadData();
+    this.getData();
   }
 
   openService = async (res: any) => {
@@ -40,11 +41,15 @@ export class SolicitudModalComponent implements OnInit {
   };
 
 
-  loadData = () => {
-    this.entry$ = this.store.select('solicitud')
-    .pipe(
+  getData = () => {
+    this.opened$ = this.store.select('solicitud').pipe(
       filter(row => !row.loading),
       map((res: any) => res.solicitud),
+      switchMap((res) => this.constructData(res))
+    );
+    this.accepted$ = this.store.select('accepted').pipe(
+      filter(row => !row.loading),
+      map((res: any) => res.accepted),
       switchMap((res) => this.constructData(res))
     );
   }

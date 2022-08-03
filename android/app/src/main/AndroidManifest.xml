@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyAylhtwYmgO_nuFZsQzvm_z6vAOvbEk80Q"/>
         <activity
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode"
             android:name="com.mekadevelopments.lt.MainActivity"
@@ -18,9 +18,8 @@
             android:launchMode="singleTask">
 
             <intent-filter>
-  mmmmdfls'd;arketing
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+              <action android:name="android.intent.action.MAIN" />
+              <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
         </activity>

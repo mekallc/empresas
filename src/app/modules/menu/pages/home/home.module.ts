@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
@@ -10,10 +11,11 @@ import { HeaderModule } from '@core/widgets/header/header.module';
 
 @NgModule({
   imports: [
-    CommonModule,
     FormsModule,
     IonicModule,
     HeaderModule,
+    CommonModule,
+    TranslateModule,
     HomePageRoutingModule
   ],
   declarations: [HomePage]

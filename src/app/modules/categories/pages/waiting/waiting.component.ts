@@ -4,6 +4,7 @@ import { ModalController, AlertController, LoadingController } from '@ionic/angu
 import { Store } from '@ngrx/store';
 import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 import { Observable, timer } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 import * as actions from '@store/actions';
 import { AppState } from '@store/app.state';
@@ -44,6 +45,7 @@ export class WaitingComponent implements AfterViewInit {
     private alertCtrl: AlertController,
     private loadCrtl: LoadingController,
     private chatService: ConnectService,
+    private translate: TranslateService,
     ) { }
 
   ngAfterViewInit(): void {
@@ -57,9 +59,9 @@ export class WaitingComponent implements AfterViewInit {
   onCancel = async () => {
     const alert = await this.alertCtrl.create({
       header: 'INFO',
-      message: 'Do you want to cancel this service?',
+      message: this.translate.instant('MESSAGES.CANCEL_SERVICE'),
       buttons: [
-        { text: 'Cancel', role: 'cancel', cssClass: 'secondary', handler: () => {} },
+        { text: this.translate.instant('ALERT.CANCEL'), role: 'cancel', cssClass: 'secondary', handler: () => {} },
         { text: 'Ok', handler: () => console.log('Confirm Okay') }
       ]
     });
@@ -85,17 +87,16 @@ export class WaitingComponent implements AfterViewInit {
         this.store.dispatch(actions.loadAccepted({ id: this.company }));
       }
     );
-    timer(1200).subscribe(() => {
-      load.dismiss();
-    });
+    timer(1200).subscribe(() => load.dismiss());
     this.onClose();
     this.router.navigate(['']);
   };
+
   onCancelService = async (company: number) => {
     const alert = await this.alertCtrl.create({
-      header: 'Info', message: 'Do you want to cancel the service?',
+      header: 'Info', message: this.translate.instant('MESSAGES.CANCEL_SERVICE'),
       buttons: [
-        { text: 'Cancel', role: 'cancel', handler: () => {} },
+        { text: this.translate.instant('ALERT.CANCEL'), role: 'cancel', handler: () => {} },
         { text: 'OK', handler: async() => {
           const load = await this.loadCrtl.create({ message: 'Processing...' })
           load.present();
@@ -115,19 +116,22 @@ export class WaitingComponent implements AfterViewInit {
   onFinishedService = async () => {
     const alert = await this.alertCtrl.create({
       header: 'Info',
-      message: 'Do you want to finished the service?',
+      message: this.translate.instant('MESSAGES.CLOSED_SERVICE'),
       buttons: [
-        { text: 'Cancel', role: 'cancel', handler: (blah) => {} },
+        { text: this.translate.instant('ALERT.CANCEL'), role: 'cancel', handler: (blah) => {} },
         {
           text: 'OK',
           handler: async() => {
-            const load = await this.loadCrtl.create({ message: 'Processing...' })
+            const load = await this.loadCrtl.create({ message: this.translate.instant('PROCCESSING') })
             load.present();
-            this.store.dispatch(actions.updateSolicitud({ id: this.res.id, status: 'CLOSED', company: this.company }))
+            this.store.dispatch(actions.updateSolicitud({ id: this.res.id, status: 'ACCEPTED', company: this.company }))
             this.getState(this.company);
             timer(1200).subscribe(async () => {
               load.dismiss();
               const modal = await this.modalCtrl.create({
+                mode: 'ios',
+                initialBreakpoint: .85,
+                breakpoints: [0, .85,1],
                 component: RatingModalComponent,
                 componentProps: { id: this.res.id, company: this.company }
               });

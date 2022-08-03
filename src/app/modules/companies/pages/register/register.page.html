@@ -28,8 +28,15 @@
                 <ion-input required formControlName="phone" type="phone" inputmode="numeric" placeholder="0000-0000"></ion-input>
               </ion-item>
               <ion-item>
+                <ion-label mode="ios"position="floating">Tipo Compañia <ion-text color="danger">*</ion-text></ion-label>
+                <ion-select formControlName="type_company" placeholder="Seleccione..." interface="action-sheet">
+                  <ion-select-option *ngFor="let item of types$ | async"
+                    [value]="item.id">{{ item.name }}</ion-select-option>
+                </ion-select>
+              </ion-item>
+              <ion-item>
                 <ion-label mode="ios"position="floating">Categories <ion-text color="danger">*</ion-text></ion-label>
-                <ion-select placeholder="Categories" interface="action-sheet" formControlName="type_expert" multiple="true">
+                <ion-select placeholder="Seleccione..." interface="action-sheet" formControlName="type_expert" multiple="true">
                   <ion-select-option *ngFor="let item of experts$ | async" [value]="item.id">{{ item.name }}</ion-select-option>
                 </ion-select>
               </ion-item>
@@ -40,11 +47,17 @@
               </ion-item>
               <ion-button (click)="onMaps()" expand="block" color="warning">
                 <ion-icon slot="start" name="location"></ion-icon>
-                Ubicame
+                Mi Ubicación
               </ion-button>
+              <ion-item *ngIf="address">
+                <ion-label>
+                  <p class="ion-text-center">[{{ roundNumber(address.lat) }}, {{ roundNumber(address.lng) }}]</p>
+                  <p class="ion-text-wrap ion-text-center">{{ address.address }}</p>
+                </ion-label>
+              </ion-item>
               <ion-item>
                 <ion-label mode="ios"position="floating">Country <ion-text color="danger">*</ion-text></ion-label>
-                <ion-select placeholder="country" interface="action-sheet" formControlName="country" mode="ios">
+                <ion-select placeholder="Seleccione..." interface="action-sheet" formControlName="country" mode="ios">
                   <ion-select-option *ngFor="let item of countries$ | async" [value]="item.id">
                     (+{{ item.phone_code }}) {{ item.name  }}</ion-select-option>
                 </ion-select>
@@ -82,7 +95,7 @@
                 <ion-input formControlName="complement"></ion-input>
               </ion-item>
               <div class="my-4">
-                <ion-button expand="block" (click)="onSubmit(2)" color="light">
+                <ion-button expand="block" (click)="onSubmit()" color="light">
                   <ion-icon slot="start" name="checkmark-circle-outline" color="meka"></ion-icon>
                   Save Company
                 </ion-button>

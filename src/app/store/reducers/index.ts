@@ -6,5 +6,6 @@ export * from './expert.reducer';
 export * from './company.reducer';
 export * from './history.reducer';
 export * from './customer.reducer';
+export * from './position.reducer';
 export * from './accepted.reducer';
 export * from './in-process.reducer';

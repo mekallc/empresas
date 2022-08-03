@@ -1,9 +1,9 @@
 import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import {NavController } from '@ionic/angular';
+import { IonContent, IonGrid, IonList, NavController, IonRow } from '@ionic/angular';
 import { Camera, CameraResultType } from '@capacitor/camera';
 import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
-import { Observable } from 'rxjs';
+import { Observable, timer } from 'rxjs';
 import { ConnectService } from '@modules/chat/services/connect.service';
 import { FireStorageService } from '@modules/chat/services/fire-storage.service';
 import { AppState } from '@store/app.state';
@@ -18,6 +18,8 @@ import { filter, map } from 'rxjs/operators';
 export class RoomsChatPage implements OnInit, AfterViewInit {
 
   @ViewChild('mic', { read: ElementRef }) mic: ElementRef;
+  @ViewChild(IonGrid, { read: ElementRef }) list: ElementRef;
+  @ViewChild('#content', { static: false }) content: IonContent;
   public company: number;
   recording = false;
   messageToogle = false;
@@ -31,6 +33,7 @@ export class RoomsChatPage implements OnInit, AfterViewInit {
   items$: Observable<any[]>;
   photo: any;
   openPopover = false;
+  name: string;
 
   constructor(
     private conn: ConnectService,
@@ -47,17 +50,25 @@ export class RoomsChatPage implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.initChat(this.uid);
-
+    this.scrollToBottomOnInit();
   }
+
+  scrollToBottomOnInit = () => {
+    timer(1000).subscribe(() => {
+      const children: any = this.list.nativeElement.children;
+      const total = children.length - 1;
+      const item = children[total];
+      item.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    });
+  };
+
 
   initChat(uid: any) {
     this.getCompany().subscribe(res => {
+      this.name = res.name;
       this.company = res.id;
       this.items$ = this.conn.getMessagesServiceChat(res.id, uid);
-      this.conn.readMessageServiceChat(res.id, uid).subscribe((res) => {});
-      this.items$.subscribe(console.log);
-      // this.items$ = this.conn.getRoomMessages(this.uid, res.id);
-      // this.conn.createRoom(uid, res.company)
+      this.conn.readMessageServiceChat(res.id, uid).subscribe((read: boolean) => console.log('CONN '));
     });
   }
   sendMessage() {
@@ -65,6 +76,7 @@ export class RoomsChatPage implements OnInit, AfterViewInit {
     this.conn.sendMessageServiceChat(this.uid, this.company, this.message);
     this.message = '';
     this.toogleMessage = false;
+    this.scrollToBottomOnInit();
   }
 
   sendMessageKeypress(ev: any) {
@@ -72,18 +84,15 @@ export class RoomsChatPage implements OnInit, AfterViewInit {
     this.sendMessage();
   }
 
-  txtMessage() {
-    if (this.message?.length === 0) { this.toogleMessage = false; }
-    else { this.toogleMessage = true; }
+  txtMessage(ev: any) {
+    const value = ev.detail.value;
+    if (value > 0 || value === '') this.toogleMessage = false;
+    else this.toogleMessage  = true;
   }
-
-  logScrolling = (ev: any) => {
-    // console.log(ev.detail);
-  };
 
   onClose = () => this.navCtrl.navigateRoot('');
 
-  // -----> Camera GET
+
   cameraGet = async () => {
     const image = await Camera.getPhoto({
       width: 600, height: 600, quality: 60, allowEditing: false, resultType: CameraResultType.DataUrl
@@ -97,11 +106,7 @@ export class RoomsChatPage implements OnInit, AfterViewInit {
     this.photoViewer.show(url, '',{ share: true });
   };
 
-  private getCompany = () => {
-    const company$ = this.store.select('company').pipe(
-      filter((row: any) => !row.loading),
-      map((res: any) => res.company)
-    );
-    return company$;
-  }
+  private getCompany = () =>
+    this.store.select('company')
+    .pipe(filter((row: any) => !row.loading), map((res: any) => res.company));
 }

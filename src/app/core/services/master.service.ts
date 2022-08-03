@@ -15,6 +15,10 @@ export class MasterService {
     return this.http.get<any>(`${url}/${version}/${collection}`);
   }
 
+  getMasterObserve(collection: string): Observable<any> {
+    return this.http.get<any>(`${url}/${version}/${collection}`, { observe: 'response' });
+  }
+
   postMaster(collection: string, data: any) {
     return this.http.post(`${url}/${version}/${collection}`, data);
   }

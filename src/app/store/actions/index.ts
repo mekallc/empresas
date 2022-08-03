@@ -7,4 +7,5 @@ export * from './history.actions';
 export * from './company.actions';
 export * from './customer.actions';
 export * from './accepted.actions';
+export * from './position.actions';
 export * from './in-process.actions';

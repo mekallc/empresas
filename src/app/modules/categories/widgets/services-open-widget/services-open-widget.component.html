@@ -1,7 +1,7 @@
 <div class="widget-slides" >
   <div class="title">
     <ion-label>
-      <h2>Open Services</h2>
+      <h2>{{'WIDGETS.IN_PROCESS' | translate }}</h2>
     </ion-label>
   </div>
   <ion-slides mode="ios" [options]="options" *ngIf="(items$ | async) as items"
@@ -10,7 +10,7 @@
       <div class="service">
         <ion-label>
           <p class="date">{{ item.date_reg | amTimeAgo  }}</p>
-          <p>{{ item.type_expert }}</p>
+          <p>{{ item.type_expert | translate }}</p>
           <h2>{{item.code}}</h2>
           <p>{{ item.vehicle_model?.brand}} </p>
           <p>{{ item.vehicle_model?.model }}</p>
@@ -21,7 +21,7 @@
     <ion-slide *ngIf="items.length === 0">
       <div class="service">
         <ion-label>
-          <h4 class="text-center">Sin Ofertas de Trabajo</h4>
+          <h4 class="text-center">{{ 'WIDGETS.NOT_FOUND' | translate }}</h4>
         </ion-label>
       </div>
     </ion-slide>

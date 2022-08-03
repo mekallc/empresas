@@ -1,4 +1,5 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { IntegratedService } from './core/services/integrated.service';
+import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { filter, map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
@@ -22,7 +23,7 @@ import * as actions from '@store/actions';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit {
 
   user$: any = [];
   appVersion: any = [];
@@ -34,34 +35,39 @@ export class AppComponent implements OnInit, AfterViewInit {
     private storage: StorageService,
     private pushService: PushService,
     public traslate: TraslationService,
-    private chatService: ConnectService,
     private token: ValidationTokenService,
+    private integrated: IntegratedService,
   ) {
+    this.integrated.getNetwork();
   }
 
   ngOnInit() {
+
     this.offOn();
-    this.token.validate();
-    this.initializeApp();
-    App.addListener('appStateChange', ({ isActive }) => {
-      if (!isActive) { return; }
-      this.token.validate();
-    });
+    this.appActive();
     this.getLanguage();
+    this.initializeApp();
   }
 
-  ngAfterViewInit(): void { }
-
   initializeApp = () => {
-    console.log('initialize');
     this.platform.ready().then(async () => {
+      this.token.validate();
+      this.integrated.initState();
       await this.pushService.initPush();
-      this.getState();
-      const push = await this.storage.getStorage('push');
-      console.log('GET PUSH ', push);
+      await this.storage.getStorage('push');
       setTimeout(()=>{ SplashScreen.hide({ fadeOutDuration: 1000 }); }, 2000)
     });
   };
+
+  appActive = () => {
+    App.addListener('appStateChange', ({ isActive }) => {
+      if (isActive) {
+        this.integrated.initState();
+        this.token.validate();
+      }
+    });
+  };
+
   getLanguage = async () => {
     const { value } = await this.global.getPreferredLanguage();
     if (value) { this.traslate.use(value.split('-')[0]); }
@@ -76,21 +82,5 @@ export class AppComponent implements OnInit, AfterViewInit {
     } else {
       this.store.dispatch(loadStatus({ id: active }));
     }
-  }
-
-  private getState = () => {
-    this.store.dispatch(loadCompany());
-    this.store.select('company')
-    .pipe(filter((row: any) => !row.loading), map((res: any) => res.company))
-    .subscribe((res: any) => {
-      if (res) {
-        const id = res.id;
-        this.chatService.createRoomUserChat(res)
-        this.store.dispatch(actions.closedLoad({ id} ));
-        this.store.dispatch(actions.loadSolicitud({ id }));
-        this.store.dispatch(actions.loadAccepted({ id }));
-        this.store.dispatch(actions.loadHistory({ id }));
-      }
-    });
   }
 }

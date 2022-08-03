@@ -1,5 +1,9 @@
 [
 	{
+		"pkg": "@capacitor-community/google-maps",
+		"classpath": "com.hemangkumar.capacitorgooglemaps.CapacitorGoogleMaps"
+	},
+	{
 		"pkg": "@capacitor-community/stripe",
 		"classpath": "com.getcapacitor.community.stripe.StripePlugin"
 	},
@@ -24,12 +28,24 @@
 		"classpath": "com.capacitorjs.plugins.geolocation.GeolocationPlugin"
 	},
 	{
+		"pkg": "@capacitor/google-maps",
+		"classpath": "com.capacitorjs.plugins.googlemaps.CapacitorGoogleMapsPlugin"
+	},
+	{
 		"pkg": "@capacitor/haptics",
 		"classpath": "com.capacitorjs.plugins.haptics.HapticsPlugin"
 	},
 	{
 		"pkg": "@capacitor/keyboard",
 		"classpath": "com.capacitorjs.plugins.keyboard.KeyboardPlugin"
+	},
+	{
+		"pkg": "@capacitor/local-notifications",
+		"classpath": "com.capacitorjs.plugins.localnotifications.LocalNotificationsPlugin"
+	},
+	{
+		"pkg": "@capacitor/network",
+		"classpath": "com.capacitorjs.plugins.network.NetworkPlugin"
 	},
 	{
 		"pkg": "@capacitor/push-notifications",

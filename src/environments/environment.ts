@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  mapbox: 'pk.eyJ1IjoiaGVjdG9yY2FuYWltZXJvIiwiYSI6ImNsM292aWxpbzBzaHMzY3V2dGdzNnIzMWgifQ.fv7vU-ZTPUvlKe3VWmnpXA',
   firebase: {
     projectId: 'meka-app',
     measurementId: 'G-JG99NW4H1J',

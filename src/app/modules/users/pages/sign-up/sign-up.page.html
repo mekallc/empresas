@@ -52,15 +52,6 @@
             </ion-text>
           </ion-item>
           <ion-item lines="none">
-            <ion-label position="stacked">{{ "ID/Cedula/Identification" | translate }} <ion-text color="danger">*</ion-text></ion-label>
-            <ion-input required type="text" inputmode="email" formControlName="identity"></ion-input>
-          </ion-item>
-          <ion-item lines="none" *ngIf="registerForm.get('identity').invalid && registerForm.get('identity').touched">
-            <ion-text color="danger" class="form-error">
-              <small>{{ "SIGN.ERROR.EMAIL" | translate }}</small>
-            </ion-text>
-          </ion-item>
-          <ion-item lines="none">
             <ion-label position="stacked">{{ "SIGN.PASSWORD" | translate }} <ion-text color="danger">*</ion-text></ion-label>
             <ion-input required type="password" formControlName="password"></ion-input>
           </ion-item>
@@ -82,10 +73,8 @@
           </ion-item>
           <ion-item lines="none">
             <ion-label position="stacked">{{ "SIGN.LANGUAGE" | translate }} <ion-text color="danger">*</ion-text></ion-label>
-            <ion-select placeholder="Idioma" interface="action-sheet">
-              <ion-select-option *ngFor="let item of idioma" [value]="item.iso">
-                {{ item.name  }}</ion-select-option>
-            </ion-select>
+            <ion-select placeholder="Idioma" interface="action-sheet" formControlName="language">
+              <ion-select-option *ngFor="let item of idioma" [value]="item.id"> {{ item.name  }}</ion-select-option> </ion-select>
           </ion-item>
         </div>
       </div>

@@ -1,7 +1,3 @@
-<!-- <ion-progress-bar type="indeterminate" color="light" *ngIf="load"></ion-progress-bar> -->
-<!-- <div class="loading" *ngIf="load">
-  <ion-spinner name="dots"></ion-spinner>
-</div> -->
 <ion-list lines="none">
   <ion-item-sliding *ngFor="let item of items$ | async; trackBy:identify">
     <ion-item button (click)="openService(item)" [detail]="false">
@@ -15,7 +11,7 @@
         <h4></h4>
       </ion-label>
       <ion-avatar slot="end" class="expert">
-        <img [src]="item.icon_expert" />
+        <img [src]="item.icon" alt="" />
       </ion-avatar>
     </ion-item>
     <ion-item-options side="start" *ngIf="!offline">

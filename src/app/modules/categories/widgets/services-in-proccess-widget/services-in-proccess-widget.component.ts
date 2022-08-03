@@ -42,13 +42,19 @@ export class ServicesInProccessWidgetComponent implements AfterViewInit {
     this.items$ = this.store.select('accepted')
     .pipe(
       filter(row => !row.loading),
-      map((res: any) =>
-        this.chatService.unReadMessageServiceChat(this.code, res.accepted).slice(0,3))
+      map((res: any) => res.accepted),
+      map((res: any) => {
+        const data = this.chatService.unReadMessageServiceChat(this.code, res).slice(0,3);
+        return data;
+      })
     );
   }
 
   openModal = async (res: any) => {
     const modal = await this.modalCtrl.create({
+      mode: 'ios',
+      initialBreakpoint: 1,
+      breakpoints: [0, 1],
       component: WaitingComponent, componentProps: { res, company: this.code } });
     await modal.present();
   };
